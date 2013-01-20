@@ -14,7 +14,7 @@ public abstract class Character implements ActionListener {
     private boolean isDead;
     private Character target;
     private boolean isStunned;
-    private Timer cooldownTimer; //lyöntinopeuden timer
+    private Timer cooldownTimer; //lyöntinopeuden ajastin    
     private boolean hitAvailable; 
     private BufferedImage image; //hahmosta näytettävä kuva
     private boolean blocking;
