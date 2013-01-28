@@ -1,6 +1,4 @@
-
 package Characters.skills;
-
 import Characters.Character;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,13 +7,16 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
-public class StunEffect implements SkillEffect, ActionListener {
+public class HealOverTimeEffect implements SkillEffect, ActionListener {
     private Timer timer;
     private Character target;
     private BufferedImage effectGraphic;
     private boolean effectActive;
+    private int tickCount;
     
-    public StunEffect(String effectGraphicPath) {
+    public HealOverTimeEffect(String effectGraphicPath) {
+        this.tickCount = 0;
+        timer = new Timer(4000, this);
         effectActive = false;
         try {
             effectGraphic = ImageIO.read(new File(effectGraphicPath));
@@ -23,31 +24,32 @@ public class StunEffect implements SkillEffect, ActionListener {
             System.out.println("efektiä ei löytynyt");
         }
     }
-
+    
     @Override
-    public void triggerEffect(Character target) {
-        this.target = target;        
-        Double time = (1.0-(2.0*target.getDefence())/100.0)*4000;
-        timer = new Timer(time.intValue(), this);
-        target.stun();
-        effectActive = true;
-        timer.start();
+    public boolean isActive() {
+        return effectActive;
     }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        target.unStun();
-        effectActive = false;
-        timer.stop();
-    }
-
+    
     @Override
     public BufferedImage getEffectGraphic() {
         return this.effectGraphic;
     }
 
     @Override
-    public boolean isActive() {
-        return effectActive;
+    public void triggerEffect(Character target) { 
+        tickCount++;
+        this.target = target;
+        this.effectActive = true;
+        timer.start();
     }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        target.getTarget().gainHealth(400);
+        tickCount++;        
+        if(tickCount == 3) {
+            this.effectActive = false;
+            timer.stop();
+        }
+    }   
 }

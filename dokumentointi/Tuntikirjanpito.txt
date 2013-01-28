@@ -1,9 +1,27 @@
 Tuntikirjanpito
 
+
 Ti 15.1.2013 
 
 Aihem‰‰rittely ja projektin luominen: n. 20min
 
 
+Pe 18.1
 
+Ohjelmoinnin aloitus: 3h
+
+
+Su 20.1
+
+Ohjelmointia, testien tekeminen ja luokkakaavion piirt‰minen: 2h
+
+
+To 24.1
+
+Ohjelmointia: n. 2h
+
+
+Ma 28.1
+
+Luokkakaavion p‰ivitys, testien tekeminen: 1h
 

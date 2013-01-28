@@ -1,4 +1,3 @@
-
 package Characters;
 
 import Characters.skills.Skill;
@@ -9,16 +8,16 @@ import java.util.ArrayList;
 import javax.swing.Timer;
 
 public abstract class Character implements ActionListener {
-    private int maxHealth, attackSpeed, strength, defence, health;
+    protected int maxHealth, attackSpeed, strength, defence, health;
     private ArrayList<BufferedImage> charImages; //kuvat animaatioihin
     private boolean isDead;
     private Character target;
     private boolean isStunned;
-    private Timer cooldownTimer; //lyöntinopeuden ajastin    
-    private boolean hitAvailable; 
+    private Timer cooldownTimer; //lyöntinopeuden ajastin
+    private boolean hitAvailable;
     private BufferedImage image; //hahmosta näytettävä kuva
     private boolean blocking;
-    private Skill lastSkillUsed;
+    protected Skill lastSkillUsed;
     private boolean skillUsed;
     
     public Character(int maxHealth, int attackSpeed, int strength, int defence, ArrayList<BufferedImage> hahmoKuvat) {
@@ -32,13 +31,13 @@ public abstract class Character implements ActionListener {
         isStunned = false;
         hitAvailable = true;
         this.image = hahmoKuvat.get(0);
-        cooldownTimer = new Timer(960-(30*this.attackSpeed), this);
+        cooldownTimer = new Timer(900-(30*this.attackSpeed), this);
         blocking = false;
         skillUsed = false;
     }
     
     public void takeDamage(int dmg) {
-        health -= (1.0-(2.0*defence)/100.0)*dmg;
+        health -= (1.0-(1.666*defence)/100.0)*dmg;
         if (health <= 0) {
             health = 0;
             this.die();
@@ -112,8 +111,8 @@ public abstract class Character implements ActionListener {
         health = maxHealth;
     }
     
-    public void setBlockState() {
-        if (!blocking) {
+    public void setBlockState() {        
+        if (!blocking) {           
             setDefence(defence*2);
             blocking = true;
         }
@@ -146,7 +145,7 @@ public abstract class Character implements ActionListener {
         return this.image;
     }
     
-    public void setImage(int stateNumber) {        
+    public void setImage(int stateNumber) {
         this.image = charImages.get(stateNumber);
     }
     
@@ -164,22 +163,9 @@ public abstract class Character implements ActionListener {
         return skillUsed;
     }   
     
-    public Skill getLastSkillUsed() {
-        return lastSkillUsed;
-    }
-    
-    public void gainStrength() {
-        strength++;
-    }
-    public void gainAttackSpeed() {
-        attackSpeed++;
-    }
-    public void gainDefence() {
-        defence++;
-    }
-    public void gainMaxHealth() {
-        maxHealth += 50;
-    }
+    public Skill getLastSkillUsed() {        
+        return lastSkillUsed;                
+    }   
     
     public void setDefence(int defence) {
         this.defence = defence;

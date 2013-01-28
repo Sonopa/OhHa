@@ -1,4 +1,3 @@
-
 package Characters.skills;
 
 import Characters.Character;
@@ -9,13 +8,15 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
-public class StunEffect implements SkillEffect, ActionListener {
+public class LowerDefenceEffect implements SkillEffect, ActionListener {
     private Timer timer;
+    private int defence;
     private Character target;
     private BufferedImage effectGraphic;
     private boolean effectActive;
     
-    public StunEffect(String effectGraphicPath) {
+    public LowerDefenceEffect(String effectGraphicPath) {
+        timer = new Timer(5000, this);
         effectActive = false;
         try {
             effectGraphic = ImageIO.read(new File(effectGraphicPath));
@@ -23,31 +24,31 @@ public class StunEffect implements SkillEffect, ActionListener {
             System.out.println("efektiä ei löytynyt");
         }
     }
-
+    
     @Override
-    public void triggerEffect(Character target) {
-        this.target = target;        
-        Double time = (1.0-(2.0*target.getDefence())/100.0)*4000;
-        timer = new Timer(time.intValue(), this);
-        target.stun();
-        effectActive = true;
-        timer.start();
+    public boolean isActive() {
+        return effectActive;
     }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        target.unStun();
-        effectActive = false;
-        timer.stop();
-    }
-
+    
     @Override
     public BufferedImage getEffectGraphic() {
         return this.effectGraphic;
     }
 
     @Override
-    public boolean isActive() {
-        return effectActive;
+    public void triggerEffect(Character target) {
+        this.target = target;
+        defence = target.getDefence();
+        target.setDefence(1);
+        this.effectActive = true;
+        timer.start();
     }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        target.setDefence(defence);
+        this.effectActive = false;
+        timer.stop();
+    }    
 }
+

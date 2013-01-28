@@ -1,3 +1,5 @@
+package CharacterTests;
+
 
 import Characters.Player;
 import java.awt.image.BufferedImage;
@@ -35,8 +37,9 @@ public class CharacterTest {
             images.add(normalState);
             images.add(attackState);
             images.add(blockState);
-        }catch (Exception e){}        
+        }catch (Exception e){}
         player = new Player(500,5,5,5,images);
+        
     }
     
     @Test
@@ -77,21 +80,27 @@ public class CharacterTest {
         player.gainExperiencePoints(2);
         player.upMaxHealth();
         player.upMaxHealth();
-        assertEquals(600, player.getMaxHealth());
+        assertEquals(700, player.getMaxHealth());
         assertEquals(0, player.getExperiencePoints());
     }
     
     @Test
     public void takingDamage() {       
         player.takeDamage(150);
-        assertEquals(500-(150*(1.0-(2.0*5)/100.0)), player.getHealth(), 0.1); 
+        assertEquals(500-(150*(1.0-(1.666*5)/100.0)), player.getHealth(), 1.0); 
+    }
+    
+    @Test
+    public void takingEnoughDamageToDie() {
+        player.takeDamage(600);
+        assertEquals(player.isDead(), true);
     }
     
     @Test
     public void gainingHealth() {
         player.takeDamage(150);
         player.gainHealth(100);
-        assertEquals(500-(150*(1.0-(2.0*5)/100.0))+100, player.getHealth(), 0.1);
+        assertEquals(500-(1.0-(1.666*5)/100.0)*150+100, player.getHealth(), 1.0);
     }
     
     @Test
@@ -118,6 +127,12 @@ public class CharacterTest {
         player.takeDamage(400);
         player.healthToFull();
         assertEquals(500, player.getHealth());
+    }  
+    
+    @Test
+    public void stunWorks() {
+        player.stun();        
+        assertEquals(player.isStunned(), true);
     }  
     
     @After
