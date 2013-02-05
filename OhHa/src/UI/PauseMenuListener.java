@@ -5,13 +5,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import ohha.Game;
 
+/**
+ * Listener for PauseMenu 
+ * @author Mertaset
+ */
 public class PauseMenuListener implements ActionListener {
     private Game game;
     private PauseMenu menu;
     private JButton contin;
     private JButton save;
     private JButton quit;
-    private PauseMenu pauseMenu;    
+    private PauseMenu pauseMenu;
     
     public PauseMenuListener(PauseMenu menu, Game game, JButton contin, JButton save, JButton quit) {
         this.game = game;

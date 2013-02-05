@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import ohha.Game;
 
+/**
+ * Listener for ExperiencePointsUI
+ * @author 
+ */
 public class ExpUIListener implements ActionListener {
     private Game game;
     private JButton plusStrength;

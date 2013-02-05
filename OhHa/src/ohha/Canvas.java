@@ -8,6 +8,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
+/**
+ * Canvas for displaying graphics
+ * @author 
+ */
 public class Canvas extends JPanel {
     private Map map;
     private Player player;

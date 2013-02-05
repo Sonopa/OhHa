@@ -6,14 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
-public class SettingsKuuntelija implements ActionListener {
+public class SettingsListener implements ActionListener {
     private Settings setting;
     private JRadioButton normal;
     private JRadioButton challenging;
     private JRadioButton hard;     
     private JButton exit;
     
-    public SettingsKuuntelija(Settings setting, JRadioButton normal, JRadioButton chal, JRadioButton hard, JButton exit) {
+    public SettingsListener(Settings setting, JRadioButton normal, JRadioButton chal, JRadioButton hard, JButton exit) {
         this.setting = setting;
         this.normal = normal;
         this.challenging = chal;

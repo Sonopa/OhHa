@@ -63,7 +63,7 @@ public class Settings implements Runnable {
         frame.add(exit);
         exit.setBackground(Color.black);
         exit.setForeground(Color.green);
-        SettingsKuuntelija kuuntelija = new SettingsKuuntelija(this, normal, challenging, hard, exit);
+        SettingsListener kuuntelija = new SettingsListener(this, normal, challenging, hard, exit);
         normal.addActionListener(kuuntelija);
         challenging.addActionListener(kuuntelija);
         hard.addActionListener(kuuntelija);

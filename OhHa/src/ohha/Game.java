@@ -27,7 +27,10 @@ import javax.swing.WindowConstants;
 import UI.SkillUI;
 import maps.LevelContainer;
 
-
+/**
+ * 
+ * @author 
+ */
 public class Game extends JFrame implements Runnable, ActionListener {
     private JFrame frame;
     private LevelContainer levels;
@@ -43,7 +46,10 @@ public class Game extends JFrame implements Runnable, ActionListener {
     private SkillContainer skills;
     private SkillUI skillUI;    
     
-    
+    /**
+     * Contains and controls the game.
+     * @param difficulty 
+     */
     public Game(int difficulty) {
         this.difficulty = difficulty;
         level = 0;

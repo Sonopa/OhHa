@@ -9,7 +9,11 @@ import javax.swing.JButton;
 import ohha.Game;
 import UI.Settings;
 
-public class MenuKuuntelija implements ActionListener {
+/**
+ * Listener for Menu
+ * @author 
+ */
+public class MenuListener implements ActionListener {
     private Settings setting;
     private JButton start;
     private JButton contin;
@@ -18,7 +22,7 @@ public class MenuKuuntelija implements ActionListener {
     private Menu menu;
     private boolean menuCreated;
     
-    public MenuKuuntelija(Menu menu, Settings setting, JButton start, JButton continueSaved,
+    public MenuListener(Menu menu, Settings setting, JButton start, JButton continueSaved,
             JButton settings, JButton quit) {
         this.setting = setting;
         this.start = start;

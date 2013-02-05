@@ -26,9 +26,7 @@ public class StunEffect implements SkillEffect, ActionListener {
             effectGraphic = ImageIO.read(new File(effectGraphicPath));
         }catch (Exception e) {
             System.out.println("efektiä ei löytynyt");
-        }
-        Double time = (1.0-(2.0*target.getDefence())/100.0)*4000;
-        timer = new Timer(time.intValue(), this);
+        }        
     }
 
     /**
@@ -36,8 +34,10 @@ public class StunEffect implements SkillEffect, ActionListener {
      * @param target 
      */
     @Override
-    public void triggerEffect(Character target) {
-        this.target = target;        
+    public void triggerEffect(Character target) {  
+        this.target = target;  
+        Double time = (1.0-(2.0*target.getDefence())/100.0)*4000;
+        timer = new Timer(time.intValue(), this);
         target.stun();
         target.addDebuff(this);
         effectNumber = target.getDebuffs().size()-1;

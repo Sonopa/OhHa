@@ -54,7 +54,7 @@ public class Menu implements Runnable {
         continueSaved.setForeground(Color.green);
         quit.setBackground(Color.black);
         quit.setForeground(Color.green);
-        MenuKuuntelija kuuntelija = new MenuKuuntelija(this, setting, start, continueSaved, settings, quit);        
+        MenuListener kuuntelija = new MenuListener(this, setting, start, continueSaved, settings, quit);        
         
         start.addActionListener(kuuntelija);
         continueSaved.addActionListener(kuuntelija);
