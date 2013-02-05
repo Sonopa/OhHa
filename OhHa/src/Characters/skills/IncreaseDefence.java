@@ -8,22 +8,26 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
-public class LowerDefenceEffect implements SkillEffect, ActionListener {
-    private Timer timer;
-    private int defence;
+/**
+ * A skilleffect that doubles the users defence for 5 seconds
+ * @author 
+ */
+public class IncreaseDefence implements SkillEffect, ActionListener {
+    private Timer timer;    
     private Character target;
+    private int defence;
     private BufferedImage effectGraphic;
     private boolean effectActive;    
     private int effectNumber;
     
-    public LowerDefenceEffect(String effectGraphicPath) {
+    public IncreaseDefence(String effectGraphicPath) {
         timer = new Timer(5000, this);
         effectActive = false;
         try {
             effectGraphic = ImageIO.read(new File(effectGraphicPath));
         }catch (Exception e) {
             System.out.println("efektiä ei löytynyt");
-        }        
+        }
     }
     
     @Override
@@ -36,37 +40,32 @@ public class LowerDefenceEffect implements SkillEffect, ActionListener {
         return this.effectGraphic;
     }
 
-    /**
-     * Set's target's defence to 1, starts the timer and add the debuff to target's debuff list
-     * @param target 
-     */
     @Override
-    public void triggerEffect(Character target) {
+    public void triggerEffect(Character target) {   
         this.target = target;
-        defence = target.getDefence();
-        target.setDefence(1);
-        target.addDebuff(this);
-        effectNumber = target.getDebuffs().size()-1;
+        defence = target.getTarget().getDefence();        
+        target.getTarget().setDefence(defence*2);
+        target.getTarget().addBuff(this);
+        effectNumber = target.getTarget().getBuffs().size()-1;        
         this.effectActive = true;
         timer.start();
     }
 
     @Override
-    public void actionPerformed(ActionEvent ae) {
+    public void actionPerformed(ActionEvent ae) {        
+        target.getTarget().removeBuff(effectNumber);
         endEffect();
-        target.removeDebuff(effectNumber);
+    }   
+
+    @Override
+    public void endEffect() {
+        target.getTarget().setDefence(defence);        
+        this.effectActive = false;
+        timer.stop();
     }    
     
     @Override
     public void decreaseEffectNumber() {
         effectNumber--;
-    }
-
-    @Override
-    public void endEffect() {
-        target.setDefence(defence);        
-        this.effectActive = false;
-        timer.stop();
     }    
 }
-

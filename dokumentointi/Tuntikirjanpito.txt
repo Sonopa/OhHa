@@ -25,3 +25,31 @@ Ma 28.1
 
 Luokkakaavion päivitys, testien tekeminen: 1h
 
+
+To 31.1
+
+Ohjelmointia: 6h
+
+
+Pe 1.2
+
+Ohjelmointia: 4h
+Grafiikan piirtämistä: 1h
+
+
+La 2.2
+
+Ohjelmointia: 1h
+
+
+Ma 4.2
+
+JavaDoc aloitus: 30min
+
+
+Ti 5.2
+
+JavaDocin tekeminen: 20min
+Testien tekeminen: 30min
+Sekvenssikaaviot: 20min
+

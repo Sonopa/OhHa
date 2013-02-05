@@ -1,10 +1,14 @@
-package Maps;
+package maps;
 
 import Characters.Monster;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
+/**
+ * A map represents a level in the game. Has background image and a monster.
+ * @author 
+ */
 public class Map {
     private Monster monster;
     private String mapImg;

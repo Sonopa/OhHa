@@ -1,0 +1,9 @@
+3
+30
+25
+20
+1000
+0
+0
+Stun
+Lower defence

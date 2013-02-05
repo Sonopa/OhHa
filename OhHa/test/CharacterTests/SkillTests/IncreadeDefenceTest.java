@@ -6,9 +6,9 @@ package CharacterTests.SkillTests;
 
 import Characters.Monster;
 import Characters.Player;
+import Characters.skills.IncreaseDefence;
 import Characters.skills.Skill;
 import Characters.skills.SkillEffect;
-import Characters.skills.StunEffect;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -24,12 +24,12 @@ import static org.junit.Assert.*;
  *
  * @author Mertaset
  */
-public class SkillTest {
+public class IncreadeDefenceTest {
     Player player;
-    Skill skill;
     Monster monster;
+    SkillEffect incdef;
     
-    public SkillTest() {
+    public IncreadeDefenceTest() {
     }
     
     @BeforeClass
@@ -53,43 +53,23 @@ public class SkillTest {
         }catch (Exception e){}        
         player = new Player(500,5,5,5,images);
         monster = new Monster(500, 5, 5, 5, images, new ArrayList<Skill>());
-        SkillEffect effect = new StunEffect("");
-        skill = new Skill("Skill", 100, 150, effect, 10000, "", "", "");
-        player.addSkill(skill);
+        incdef = new IncreaseDefence("");
         player.setTarget(monster);
-    }
+        monster.setTarget(player);
+    }  
     
     @After
     public void tearDown() {
     }
     
     @Test
-    public void playerHasSkill() {
-        assertEquals(player.getSkill("Skill"), skill);
+    public void isDefenceIncreased() {
+        incdef.triggerEffect(player.getTarget());
+        assertEquals(10, player.getDefence());
     }
-    
     @Test
-    public void skillDoesDamage() {        
-        player.useSkill(skill);
-        assertEquals(monster.getHealth(), 500-(1.0-(1.666*5)/100.0)*100, 1.0);
-    }   
-    
-    @Test
-    public void skillHeals() {
-        player.takeDamage(200);
-        player.useSkill(skill);
-        assertEquals(player.getHealth(), 500-(1.0-(1.666*5)/100.0)*200+150, 1.0);
-    }
-    
-    @Test
-    public void skillEffectWorks() {
-        player.useSkill(skill);
-        assertEquals(monster.isStunned(), true);
-    }
-    
-    @Test
-    public void getsUsed() {
-        player.useSkill(skill);
-        assertEquals(skill.isUsed(), true);
-    }
+    public void addedToBuffList() {
+        incdef.triggerEffect(player.getTarget());
+        assertEquals(1, player.getBuffs().size());
+    }    
 }

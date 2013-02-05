@@ -1,9 +1,9 @@
 
 package ohha;
 
+import UI.Settings;
 import javax.swing.SwingUtilities;
-import menu.Menu;
-import menu.Settings;
+import UI.Menu;
 
 public class OhHa {
 

@@ -1,5 +1,6 @@
-package menu;
+package UI;
 
+import UI.Settings;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -8,6 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+/**
+ * The main menu for the game. First thing shown on startup and contains options to start a new game,
+ * continue game, change difficulty or to quit game.
+ * @author Mertaset
+ */
 public class Menu implements Runnable {
     private JFrame frame;
     private Settings setting;
@@ -48,9 +54,10 @@ public class Menu implements Runnable {
         continueSaved.setForeground(Color.green);
         quit.setBackground(Color.black);
         quit.setForeground(Color.green);
-        MenuKuuntelija kuuntelija = new MenuKuuntelija(this, setting, start, settings, quit);        
+        MenuKuuntelija kuuntelija = new MenuKuuntelija(this, setting, start, continueSaved, settings, quit);        
         
         start.addActionListener(kuuntelija);
+        continueSaved.addActionListener(kuuntelija);
         settings.addActionListener(kuuntelija);
         quit.addActionListener(kuuntelija);
     }
@@ -59,11 +66,7 @@ public class Menu implements Runnable {
         return frame;
     }   
     
-    public void asetaNakymattomaksi() {
-        frame.setVisible(false);
-    }
-    
-    public void asetaNakyvaksi() {
-        frame.setVisible(true);
-    }    
+    public void dispose() {
+        frame.dispose();
+    }     
 }
