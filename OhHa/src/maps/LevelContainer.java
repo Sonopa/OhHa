@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class LevelContainer {
-    private ArrayList<Map> kentat;
-    private ArrayList<Monster> vihut;
+    private ArrayList<Map> maps;
+    private ArrayList<Monster> monsters;
     private ArrayList<Skill> skills;
     private int difficulty;
     
@@ -19,8 +19,8 @@ public class LevelContainer {
      * @param difficulty 
      */
     public LevelContainer(ArrayList<Skill> skills, int difficulty) {
-        kentat = new ArrayList<Map>();
-        vihut = new ArrayList<Monster>();
+        maps = new ArrayList<Map>();
+        monsters = new ArrayList<Monster>();
         this.skills = skills;
         this.difficulty = difficulty;
     }
@@ -47,8 +47,8 @@ public class LevelContainer {
      * @param level 
      */
     public void createMap(String bgImagePath, int level) {
-        Map kentta = new Map(bgImagePath, vihut.get(level-1));
-        kentat.add(kentta);
+        Map kentta = new Map(bgImagePath, monsters.get(level-1));
+        maps.add(kentta);
     }
     
     /**
@@ -90,10 +90,10 @@ public class LevelContainer {
         }
         Monster monster = new Monster(500*taso+500*difficulty, 2*taso+2*difficulty, 2*taso+2*difficulty,
                 2*taso+2*difficulty, animations, skillList);        
-        vihut.add(monster);
+        monsters.add(monster);
     }
     
     public ArrayList<Map> getMapList() {
-        return this.kentat;
+        return this.maps;
     }   
 }

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package CharacterTests.SkillTests;
 
 import Characters.Monster;
@@ -20,10 +17,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Mertaset
- */
 public class IncreadeDefenceTest {
     Player player;
     Monster monster;

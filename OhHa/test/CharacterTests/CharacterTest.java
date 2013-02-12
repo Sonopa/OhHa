@@ -43,6 +43,27 @@ public class CharacterTest {
     }
     
     @Test
+    public void playerStrengthCorrect() {
+        assertEquals(5, player.getStrength());
+    }
+    @Test
+    public void playerAttackSpeedCorrect() {
+        assertEquals(5, player.getAttackSpeed());
+    }
+    @Test
+    public void playerMaxHealthCorrect() {
+        assertEquals(500, player.getMaxHealth());
+    }
+    @Test
+    public void playerHealthCorrect() {
+        assertEquals(player.getMaxHealth(), player.getHealth());
+    }
+    @Test
+    public void playerDefenceCorrect() {
+        assertEquals(5, player.getDefence());
+    }
+    
+    @Test
     public void playerGainsExperience() {
         player.gainExperiencePoints(5);
         assertEquals(5, player.getExperiencePoints());

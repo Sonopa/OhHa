@@ -20,10 +20,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Mertaset
- */
 public class SkillTest {
     Player player;
     Skill skill;
@@ -61,6 +57,16 @@ public class SkillTest {
     
     @After
     public void tearDown() {
+    }
+    
+    @Test
+    public void skillHasRightDmg() {
+        assertEquals(100, skill.getDmg());
+    }
+    
+    @Test
+    public void skillHasEffect() {
+        assertEquals("stun", skill.getEffect().getType());
     }
     
     @Test

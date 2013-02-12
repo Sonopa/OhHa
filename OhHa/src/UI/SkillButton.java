@@ -10,8 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 /**
- * A custom button for SkillUI. Show's the image of the skill
- * @author Mertaset
+ * A custom button for SkillUI. Show's the image of the skill 
  */
 public class SkillButton extends JButton {
     private BufferedImage skillImage;    

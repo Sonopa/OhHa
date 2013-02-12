@@ -17,14 +17,14 @@ public class Map {
     public Map(String mapImagePath, Monster monster) {
         this.monster = monster;
         this.mapImg = mapImagePath;
-    }
-    
-    public BufferedImage getMapImage() {
         try {
             bg = ImageIO.read(new File(mapImg));
         }catch (Exception e){
             System.out.println(e);
         }
+    }
+    
+    public BufferedImage getMapImage() {        
         return bg;
     }
     

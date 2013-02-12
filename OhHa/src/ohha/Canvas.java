@@ -82,9 +82,9 @@ public class Canvas extends JPanel {
         if (buffAmount > 0) {
             for (int i=0; i<character.getBuffs().size(); i++) {
                 if (!isMonster) {
-                    g2d.drawImage(character.getBuffs().get(i).getEffectGraphic(), 100+40*i, 500, null);
+                    g2d.drawImage(character.getBuffs().get(i).getEffectGraphic(), 100+40*i, 480, null);
                 }else {
-                    g2d.drawImage(character.getBuffs().get(i).getEffectGraphic(), 500+40*i, 500, null);
+                    g2d.drawImage(character.getBuffs().get(i).getEffectGraphic(), 500+40*i, 480, null);
                 }
             }
         }
@@ -92,9 +92,9 @@ public class Canvas extends JPanel {
         if (debuffAmount > 0) {
             for (int i=0; i<character.getDebuffs().size(); i++) {
                 if (!isMonster) {
-                    g2d.drawImage(character.getDebuffs().get(i).getEffectGraphic(), 100+40*i, 540, null);
+                    g2d.drawImage(character.getDebuffs().get(i).getEffectGraphic(), 100+40*i, 520, null);
                 }else {
-                    g2d.drawImage(character.getDebuffs().get(i).getEffectGraphic(), 500+40*i, 540, null);
+                    g2d.drawImage(character.getDebuffs().get(i).getEffectGraphic(), 500+40*i, 520, null);
                 }
             }
         }               

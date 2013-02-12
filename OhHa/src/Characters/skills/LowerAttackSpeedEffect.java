@@ -8,16 +8,16 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
-public class LowerDefenceEffect implements SkillEffect, ActionListener {
+public class LowerAttackSpeedEffect implements SkillEffect, ActionListener {
     private Timer timer;
-    private int defence;
+    private int attackSpeed;
     private Character target;
     private BufferedImage effectGraphic;
     private boolean effectActive;    
     private int effectNumber;
     
-    public LowerDefenceEffect(String effectGraphicPath) {
-        timer = new Timer(5000, this);
+    public LowerAttackSpeedEffect(String effectGraphicPath) {
+        timer = new Timer(6000, this);
         effectActive = false;
         try {
             effectGraphic = ImageIO.read(new File(effectGraphicPath));
@@ -37,29 +37,19 @@ public class LowerDefenceEffect implements SkillEffect, ActionListener {
     }
 
     /**
-     * Set's target's defence to 1, starts the timer and add the debuff to target's debuff list
+     * Set's target's attack speed to 1, starts the timer and add the debuff to target's debuff list
      * @param target 
      */
     @Override
     public void triggerEffect(Character target) {
-        this.target = target;
-        boolean defenceEffectActive = false;
-        for (SkillEffect effect : target.getBuffs()) {
-            if (effect.getType().equals(this.getType())) {
-                defenceEffectActive = true;
-            }
-        }
-        if (target.isBlocking()) {
-            defenceEffectActive = true;
-        }
-        if (!defenceEffectActive) {
-            defence = target.getDefence();
-            target.setDefence(1);
-            target.addDebuff(this);
-            effectNumber = target.getDebuffs().size()-1;
-            this.effectActive = true;
-            timer.start();
-        }        
+        this.target = target;        
+        attackSpeed = target.getAttackSpeed();
+        target.setAttackSpeed(1);
+        target.updateAttackSpeed();        
+        target.addDebuff(this);
+        effectNumber = target.getDebuffs().size()-1;
+        this.effectActive = true;
+        timer.start();
     }
 
     @Override
@@ -75,14 +65,15 @@ public class LowerDefenceEffect implements SkillEffect, ActionListener {
 
     @Override
     public void endEffect() {
-        target.setDefence(defence);        
+        target.setAttackSpeed(attackSpeed);
+        target.updateAttackSpeed();    
         this.effectActive = false;
         timer.stop();
     }    
 
     @Override
     public String getType() {
-        return "defence";
+        return "attackSpeed";
     }
     
     @Override
@@ -90,4 +81,3 @@ public class LowerDefenceEffect implements SkillEffect, ActionListener {
         target.removeDebuff(effectNumber);
     }
 }
-

@@ -1,4 +1,3 @@
-
 package Characters.skills;
 import Characters.Character;
 import java.awt.event.ActionEvent;
@@ -8,26 +7,25 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 /**
- * A skilleffect that heals the user for 400 every 4 seconds for 12 seconds
- * @author 
+ * A skilleffect that deals 200 damage every 2 seconds for 8 seconds 
  */
-public class HealOverTimeEffect implements SkillEffect, ActionListener {
+public class DamageOverTimeEffect implements SkillEffect, ActionListener {
     private Timer timer;
-    private Character target;
+    private Character target;    
     private BufferedImage effectGraphic;
     private boolean effectActive;
     private int tickCount;
     private int effectNumber;
     
-    public HealOverTimeEffect(String effectGraphicPath) {
+    public DamageOverTimeEffect(String effectGraphicPath) {
         this.tickCount = 0;
-        timer = new Timer(4000, this);
+        timer = new Timer(2000, this);
         effectActive = false;
         try {
             effectGraphic = ImageIO.read(new File(effectGraphicPath));
         }catch (Exception e) {
             System.out.println("efektiä ei löytynyt");
-        }        
+        }
     }
     
     @Override
@@ -41,24 +39,24 @@ public class HealOverTimeEffect implements SkillEffect, ActionListener {
     }
 
     @Override
-    public void triggerEffect(Character target) {         
-        tickCount++;
+    public void triggerEffect(Character target) {
         this.target = target;
-        target.getTarget().addBuff(this);   
-        if (tickCount == 1) {            
-            effectNumber = target.getTarget().getBuffs().size()-1;
+        target.addDebuff(this);
+        if (tickCount == 0) {
+            effectNumber = target.getDebuffs().size()-1;
         }
         this.effectActive = true;
         timer.start();
     }
-    
-    
+
+
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        target.getTarget().gainHealth(400);
-        tickCount++;  
-        if (tickCount == 3) { 
+        target.takeDamage(200);
+        tickCount++;
+        System.out.println(tickCount);
+        if (tickCount == 4) { 
             endEffect();   
             removeFromList();
         }
@@ -78,11 +76,11 @@ public class HealOverTimeEffect implements SkillEffect, ActionListener {
 
     @Override
     public String getType() {
-        return "hot";
+        return "dot";
     }
     
     @Override
     public void removeFromList() {
-        target.getTarget().removeBuff(effectNumber);   
+        target.removeDebuff(effectNumber);   
     }
 }

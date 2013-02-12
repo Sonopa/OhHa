@@ -15,7 +15,7 @@ import javax.swing.Timer;
 public abstract class Character implements ActionListener {
     /**
      * Attributes: maxHealth is the maximum health of the character, attackSpeed reduces the hit
-     * cooldown timer, streangth increases hit's damage, defence reduces damage taken and stun's length,
+     * cooldowntimer delay, streangth increases hit's damage, defence reduces damage taken and stun's length,
      * health is the current health of the character.
      */
     protected int maxHealth, attackSpeed, strength, defence, health;
@@ -27,7 +27,13 @@ public abstract class Character implements ActionListener {
     private boolean hitAvailable;
     private BufferedImage image; //hahmosta näytettävä kuva
     private boolean blocking;
+    /**
+    * A list of currently active buffs on the character
+    */
     private ArrayList<SkillEffect> buffs;
+    /**
+    * A list of currently active debuffs on the character
+    */
     private ArrayList<SkillEffect> debuffs;
     
     public Character(int maxHealth, int attackSpeed, int strength, int defence, ArrayList<BufferedImage> hahmoKuvat) {
@@ -43,12 +49,12 @@ public abstract class Character implements ActionListener {
         this.image = hahmoKuvat.get(0);
         cooldownTimer = new Timer(900-(30*this.attackSpeed), this);
         blocking = false;        
-        buffs = new ArrayList<SkillEffect>();
+        buffs = new ArrayList<SkillEffect>();        
         debuffs = new ArrayList<SkillEffect>();
     }
     
     /**
-     * Reduces the health of the target by the given amount
+     * Reduces the health of the character by the given amount
      * @param dmg 
      */
     public void takeDamage(int dmg) {
@@ -59,6 +65,10 @@ public abstract class Character implements ActionListener {
         }
     }
     
+    /**
+     * Target takes the calculated amount of damage
+     * @param target 
+     */
     public void hit(Character target) {
         if (hitAvailable && !isStunned && !isDead) {
             this.setImage(1);
@@ -67,14 +77,23 @@ public abstract class Character implements ActionListener {
             cooldownTimer.start();
         }
     }
+    public boolean isBlocking() {
+        return blocking;
+    }
         
     public boolean isStunned() {
         return isStunned;
     }
+    /**
+     * Set's attribute isDead to true
+     */
     public void die() {
         this.isDead = true;
     }
     
+    /**
+     * Set's attribute isDead to false
+     */
     public void revive() {
         this.isDead = false;
     }    
@@ -115,6 +134,11 @@ public abstract class Character implements ActionListener {
         this.target = target;
     }
     
+    /**
+     * Increases the character's health by the given amount, or if it exceeds maxHealth
+     * set's health to maxHealth
+     * @param healthAmount 
+     */
     public void gainHealth(int healthAmount) {
         if(this.health + healthAmount <= maxHealth) {
             this.health += healthAmount;
@@ -127,6 +151,9 @@ public abstract class Character implements ActionListener {
         health = maxHealth;
     }
     
+    /**
+     * Doubles the character's defence
+     */
     public void setBlockState() {        
         if (!blocking && !isStunned) {   
             setDefence(defence*2);
@@ -135,6 +162,9 @@ public abstract class Character implements ActionListener {
         }
     }
     
+    /**
+     * Set's character's defence back to normal after blocking
+     */
     public void endBlockState() {
         if (blocking) {
             setDefence(defence/2);
@@ -147,6 +177,9 @@ public abstract class Character implements ActionListener {
         return this.isDead;
     }
     
+    /**
+     * Character is stunned and can't hit or use skills
+     */
     public void stun() {
         isStunned = true;
     }
@@ -169,17 +202,33 @@ public abstract class Character implements ActionListener {
         this.image = charImages.get(stateNumber);
     }
     
+    /**
+     * Uses the given skill and start the cooldowntimer. If skill type is remove debuffs
+     * cooldowntimer is not started.
+     * @param skill 
+     */
     public void useSkill(Skill skill) {
-        if (hitAvailable && !isStunned && !skill.isUsed() && !isDead) {
+        if (skill.getEffect().getType().equals("remove debuffs")) {
+            skill.use(this, target);  
+        }
+        else if (hitAvailable && !isStunned && !skill.isUsed() && !isDead) {
             skill.use(this, target);            
             hitAvailable = false; 
             cooldownTimer.start();
         }
     }     
     
+    /**
+     * Adds a skilleffect to the list of active buffs
+     * @param effect 
+     */
     public void addBuff(SkillEffect effect) {        
         buffs.add(effect);        
     } 
+    /**
+     * Adds a skilleffect to the list of active debuffs
+     * @param effect 
+     */
     public void addDebuff(SkillEffect effect) {        
         debuffs.add(effect);
     } 
@@ -189,18 +238,36 @@ public abstract class Character implements ActionListener {
     public ArrayList<SkillEffect> getDebuffs() {
         return debuffs;
     }
+    /**
+     * Removes a skilleffect from the list of active buffs and reduces the effect number
+     * of the effects that are behind it on the list
+     * @param effect 
+     */
     public void removeBuff(int effectNumber) {        
         buffs.remove(effectNumber);       
         for (int i = effectNumber; i<this.getBuffs().size(); i++) {
             this.getBuffs().get(i).decreaseEffectNumber();
         }
     }
+    /**
+     * Removes a skilleffect from the list of active debuffs and reduces the effect number
+     * of the effects that are behind it on the list
+     * @param effect 
+     */
     public void removeDebuff(int effectNumber) {
         debuffs.remove(effectNumber);
         for (int i = effectNumber; i<this.getDebuffs().size(); i++) {
             this.getDebuffs().get(i).decreaseEffectNumber();
         }
     }    
+    
+    /**
+     * Updates the delay of the cooldowntimer if attackSpeed has changed
+     */
+    public void updateAttackSpeed() {        
+        cooldownTimer.setInitialDelay(900-(30*this.attackSpeed));
+        cooldownTimer.restart();
+    }
     
     @Override
     public void actionPerformed(ActionEvent ae) {

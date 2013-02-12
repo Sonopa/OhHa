@@ -1,15 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package CharacterTests.SkillTests;
 
 import Characters.Monster;
 import Characters.Player;
 import Characters.skills.IncreaseDefence;
 import Characters.skills.LowerDefenceEffect;
+import Characters.skills.RemoveDebuffsEffect;
 import Characters.skills.Skill;
 import Characters.skills.SkillEffect;
+import Characters.skills.StunEffect;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -21,11 +20,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class LowerDefenceTest {
-    Monster monster;
+public class RemoveDebuffsTest {
     Player player;
+    Monster monster;
+    SkillEffect remDB;
     SkillEffect lowerDef;
-    public LowerDefenceTest() {
+    SkillEffect stun;
+    
+    public RemoveDebuffsTest() {
     }
     
     @BeforeClass
@@ -47,11 +49,13 @@ public class LowerDefenceTest {
             images.add(attackState);
             images.add(blockState);
         }catch (Exception e){}        
-        player = new Player(500,5,5,5,images);
-        monster = new Monster(500, 5, 5, 5, images, new ArrayList<Skill>());
-        lowerDef = new LowerDefenceEffect("");
+        player = new Player(500,5,5,5,images);      
+        monster = new Monster(500,5,5,5,images, new ArrayList<Skill>());
+        remDB = new RemoveDebuffsEffect();
         player.setTarget(monster);
         monster.setTarget(player);
+        lowerDef = new LowerDefenceEffect("");
+        stun = new StunEffect("");
     }  
     
     @After
@@ -59,18 +63,18 @@ public class LowerDefenceTest {
     }
     
     @Test
-    public void isDefenceLowered() {
-        lowerDef.triggerEffect(player.getTarget());
-        assertEquals(1, monster.getDefence());
+    public void areDebuffsOnList() {
+        lowerDef.triggerEffect(player);
+        stun.triggerEffect(player);
+        assertEquals(2, player.getDebuffs().size());
     }
+    
     @Test
-    public void addedToMonsterDebuffList() {
-        lowerDef.triggerEffect(player.getTarget());
-        assertEquals(1, monster.getDebuffs().size());
-    } 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    public void DebuffsRemoved() {
+        lowerDef.triggerEffect(player);
+        stun.triggerEffect(player);
+        remDB.triggerEffect(monster);
+        assertEquals(0, player.getDebuffs().size());
+    }
+    
 }

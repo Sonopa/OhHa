@@ -53,3 +53,13 @@ JavaDocin tekeminen: 20min
 Testien tekeminen: 30min
 Sekvenssikaaviot: 20min
 
+To 7.2
+
+Ohjelmointia: 1,5h
+
+
+Ti 12.2
+
+JavaDoc ja testit: 50min
+Sekvenssi ja luokkakaavio: 30min
+

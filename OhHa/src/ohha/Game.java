@@ -28,7 +28,7 @@ import UI.SkillUI;
 import maps.LevelContainer;
 
 /**
- * 
+ * The main class that contains all of the game's components
  * @author 
  */
 public class Game extends JFrame implements Runnable, ActionListener {
@@ -46,10 +46,6 @@ public class Game extends JFrame implements Runnable, ActionListener {
     private SkillContainer skills;
     private SkillUI skillUI;    
     
-    /**
-     * Contains and controls the game.
-     * @param difficulty 
-     */
     public Game(int difficulty) {
         this.difficulty = difficulty;
         level = 0;
@@ -97,6 +93,7 @@ public class Game extends JFrame implements Runnable, ActionListener {
         monster = levels.getMapList().get(level).getMonster();   
         monster.setTarget(player);
         player.setTarget(monster);
+        player.updateAttackSpeed();
         AI = new MonsterAI(monster);
     }
     
@@ -121,7 +118,7 @@ public class Game extends JFrame implements Runnable, ActionListener {
         removeEffects(monster);
     }
     
-    public void nextLevel() {        
+    public void nextLevel() {
         level++;
         canvas.changeMap(levels.getMapList().get(level), player); 
         gameInit();
@@ -144,14 +141,14 @@ public class Game extends JFrame implements Runnable, ActionListener {
     public Player createPlayer() {        
         ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
         try {
-            BufferedImage normalState = ImageIO.read(new File("src/images/orcn.png"));
+            BufferedImage normalState = ImageIO.read(new File("src/images/orcn.png"));            
             BufferedImage attackState = ImageIO.read(new File("src/images/orca.png"));
             BufferedImage blockState = ImageIO.read(new File("src/images/orcd.png"));
             images.add(normalState);
             images.add(attackState);
             images.add(blockState);
         }catch (Exception e){}
-        player = new Player(1000,20,20,20,images);
+        player = new Player(10000,1,25,1,images);
         return player;
     }
     

@@ -17,11 +17,11 @@ public class IncreaseDefence implements SkillEffect, ActionListener {
     private Character target;
     private int defence;
     private BufferedImage effectGraphic;
-    private boolean effectActive;    
+    private boolean effectActive;
     private int effectNumber;
     
     public IncreaseDefence(String effectGraphicPath) {
-        timer = new Timer(5000, this);
+        timer = new Timer(6000, this);
         effectActive = false;
         try {
             effectGraphic = ImageIO.read(new File(effectGraphicPath));
@@ -41,20 +41,31 @@ public class IncreaseDefence implements SkillEffect, ActionListener {
     }
 
     @Override
-    public void triggerEffect(Character target) {   
+    public void triggerEffect(Character target) {
         this.target = target;
-        defence = target.getTarget().getDefence();        
-        target.getTarget().setDefence(defence*2);
-        target.getTarget().addBuff(this);
-        effectNumber = target.getTarget().getBuffs().size()-1;        
-        this.effectActive = true;
-        timer.start();
+        boolean defenceEffectActive = false;
+        for (SkillEffect effect : target.getTarget().getDebuffs()) {
+            if (effect.getType().equals(this.getType())) {
+                defenceEffectActive = true;
+            }
+        }
+        if (target.isBlocking()) {
+            defenceEffectActive = true;
+        }
+        if (!defenceEffectActive) {
+            defence = target.getTarget().getDefence();        
+            target.getTarget().setDefence(defence*2);
+            target.getTarget().addBuff(this);
+            effectNumber = target.getTarget().getBuffs().size()-1;        
+            this.effectActive = true;
+            timer.start();
+        }        
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {        
-        target.getTarget().removeBuff(effectNumber);
         endEffect();
+        removeFromList();
     }   
 
     @Override
@@ -67,5 +78,15 @@ public class IncreaseDefence implements SkillEffect, ActionListener {
     @Override
     public void decreaseEffectNumber() {
         effectNumber--;
-    }    
+    }
+
+    @Override
+    public String getType() {
+        return "defence";
+    }
+    
+    @Override
+    public void removeFromList() {
+        target.getTarget().removeBuff(effectNumber);
+    }
 }

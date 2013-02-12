@@ -48,7 +48,7 @@ public class StunEffect implements SkillEffect, ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         endEffect();
-        target.removeDebuff(effectNumber);
+        removeFromList();
     }
 
     @Override
@@ -72,4 +72,14 @@ public class StunEffect implements SkillEffect, ActionListener {
     public void decreaseEffectNumber() {
         effectNumber--;
     }   
+
+    @Override
+    public String getType() {
+        return "stun";
+    }
+
+    @Override
+    public void removeFromList() {
+        target.removeDebuff(effectNumber);
+    }
 }

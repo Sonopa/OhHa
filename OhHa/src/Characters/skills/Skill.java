@@ -13,8 +13,7 @@ import UI.SkillButton;
 
 /**
  * Represents a character's skill. When skill is used, a cooldowntimer is started and the skill's
- * effects are triggered. Skill is unusable again until the cooldowntimer has stopped.
- * @author 
+ * effects are triggered. Skill is unusable again until the cooldowntimer has stopped. 
  */
 public class Skill implements ActionListener {
     private String name;

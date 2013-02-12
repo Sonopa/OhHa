@@ -58,53 +58,53 @@ public class SkillContainer {
     /**
      * Creates all player skills.
      */
-    public void createSkills() {
-        createMonsterSkill("Stun", 0, 0, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
+    public void createMonsterSkills() {
+        createMonsterSkill("Stun", 0, 0, new StunEffect("src/images/stunImage.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
                 "Stun: Stuns the enemy for 4 seconds (10s cooldown) [-1 skillpoint]");
         createMonsterSkill("Lower defence", 50, 0, new LowerDefenceEffect("src/images/LowerDefenceEffect.png"), 10000, "src/images/LowerDefenceUsed.png", "src/images/LowerDefenceUsable.png", 
-                "Lower Defence: Deals 50 damage and lowers the enemy's defence to 1 for 5 seconds (10s cooldown) [-1 skillpoint]");
-        createMonsterSkill("Lower Strength", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
+                "Lower Defence: Deals 50 damage and lowers the enemy's defence to 1 for 5 seconds and make's him unable to increase defence. (10s cooldown) [-1 skillpoint]");
+        createMonsterSkill("Lower Strength", 10, 50, new StunEffect("src/images/stunImage.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
                 "Stuns the enemy for 3 seconds");
         createMonsterSkill("Renew", 0, 400, new HealOverTimeEffect("src/images/Renew.png"), 15000, "src/images/RenewNU.png", "src/images/RenewU.png",
                 "Renew: Heals for 400 every 4 seconds for 12 seconds (15s cooldown) [-1 skillpoint]");
-        createMonsterSkill("Stun2", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
+        createMonsterSkill("Stun2", 10, 50, new StunEffect("src/images/stunImage.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
                 "Stuns the enemy for 3 seconds");
-        createMonsterSkill("Stun3", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
+        createMonsterSkill("Stun3", 10, 50, new StunEffect("src/images/stunImage.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
                 "Stuns the enemy for 3 seconds");
-        createMonsterSkill("Stun4", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
-                "Stuns the enemy for 3 seconds");
-        createMonsterSkill("Stun5", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
+        createMonsterSkill("Remove Debuffs", 0, 100, new RemoveDebuffsEffect(), 10000, "src/images/removeDebuffsn.png", "src/images/removeDebuffsu.png",
+                "Remove Debuffs: Removes all debuffs from the player and heals for 100 (10s cooldown) [-1 skillpoint]");
+        createMonsterSkill("Stun5", 10, 50, new StunEffect("src/images/stunImage.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
                 "Stuns the enemy for 3 seconds");
         createMonsterSkill("Ultimate Defence", 0, 1000, new IncreaseDefence("src/images/UDef.png"), 15000, "src/images/UDefNU.png", "src/images/UDefU.png",
                 "Ultimate Defence: Doubles defence for 5 seconds and heals for 1000 (15s cooldown) [-2 skillpoints]");
-        createMonsterSkill("Stun7", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
-                "Stun: Stuns the enemy for 3 seconds. Cooldown: 10s");
+        createMonsterSkill("Pain", 400, 0, new DamageOverTimeEffect("src/images/Pain.png"), 15000, "src/images/PainN.png", "src/images/PainU.png",
+                "Pain: Deals 400 damage and then 200 every 2 seconds for 8 seconds (15s cooldown) [-2 skillpoints]");
     }
     
     /**
      * Creates all monster skills.
      */
-    public void createMonsterSkills() {
-        createSkill("Stun", 0, 0, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
+    public void createSkills() {
+        createSkill("Stun", 0, 0, new StunEffect("src/images/stunImage.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
                 "Stun: Stuns the enemy for 4 seconds (10s cooldown) [-1 skillpoint]");
         createSkill("Lower defence", 50, 0, new LowerDefenceEffect("src/images/LowerDefenceEffect.png"), 10000, "src/images/LowerDefenceUsed.png", "src/images/LowerDefenceUsable.png", 
-                "Lower Defence: Deals 50 damage and lowers the enemy's defence to 1 for 5 seconds (10s cooldown) [-1 skillpoint]");
-        createSkill("Lower Strength", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
-                "Stuns the enemy for 3 seconds");
+                "Lower Defence: Deals 50 damage and lowers the enemy's defence to 1 and make's him unable to increase defence for 5 seconds (10s cooldown) [-1 skillpoint]");
+        createSkill("Lower Attack Speed", 0, 0, new LowerAttackSpeedEffect("src/images/LowerSpeed.png"), 12000, "src/images/LowerSpeedN.png", "src/images/LowerSpeedU.png",
+                "Lower Attack Speed: Lowers target's attack speed to 1 for 6 seconds (12s cooldown) [-1 skillpoint]");
         createSkill("Renew", 0, 400, new HealOverTimeEffect("src/images/Renew.png"), 15000, "src/images/RenewNU.png", "src/images/RenewU.png",
                 "Renew: Heals for 400 every 4 seconds for 12 seconds (15s cooldown) [-1 skillpoint]");
-        createSkill("Stun2", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
+        createSkill("Stun2", 10, 50, new StunEffect("src/images/stunImage.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
                 "Stuns the enemy for 3 seconds");
-        createSkill("Stun3", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
-                "Stuns the enemy for 3 seconds");
-        createSkill("Stun4", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
-                "Stuns the enemy for 3 seconds");
-        createSkill("Stun5", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
-                "Stuns the enemy for 3 seconds");
+        createSkill("Remove Debuffs", 0, 100, new RemoveDebuffsEffect(), 10000, "src/images/removeDebuffsn.png", "src/images/removeDebuffsu.png",
+                "Remove Debuffs: Removes all debuffs from the player and heals for 100 (10s cooldown) [-1 skillpoint]");
+        createSkill("Heal", 0, 900, new NoEffect(), 8000, "src/images/HealN.png", "src/images/HealU.png",
+                "Heal: Heals for 900 (8s cooldown) [-1 skillpoint]");
+        createSkill("Hard hit", 500, 0, new NoEffect(), 6000, "src/images/HhitN.png", "src/images/HhitU.png",
+                "Hard hit: Deals 500 damage (6s cooldown) [-1 skillpoint]");
         createSkill("Ultimate Defence", 0, 1000, new IncreaseDefence("src/images/UDef.png"), 15000, "src/images/UDefNU.png", "src/images/UDefU.png",
-                "Ultimate Defence: Doubles defence for 5 seconds and heals for 1000 (15s cooldown) [-2 skillpoints]");
-        createSkill("Stun7", 10, 50, new StunEffect("src/images/star.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
-                "Stun: Stuns the enemy for 3 seconds. Cooldown: 10s");
+                "Ultimate Defence: Doubles defence for 6 seconds and heals for 1000 (15s cooldown) [-2 skillpoints]");
+        createSkill("Pain", 400, 0, new DamageOverTimeEffect("src/images/Pain.png"), 15000, "src/images/PainN.png", "src/images/PainU.png",
+                "Pain: Deals 400 damage and then 200 every 2 seconds for 8 seconds (15s cooldown) [-2 skillpoints]");
     }
     
     public ArrayList<Skill> getSkillList() {

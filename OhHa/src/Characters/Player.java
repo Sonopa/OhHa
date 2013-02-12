@@ -24,6 +24,10 @@ public class Player extends Character {
         skillList = new ArrayList<Skill>();
     }
     
+    /**
+     * Add's the given skill to the player's list of skills
+     * @param skill 
+     */
     public void addSkill(Skill skill) {
         skills.put(skill.getName(), skill);
         skillList.add(skill);        
