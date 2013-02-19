@@ -10,40 +10,42 @@ import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 /**
- * A skilleffect that makes the target unable to hit or use skills for 4 seconds
- * @author 
+ * A skilleffect that stun the target for 1 second and permanenlty decreases the target's 
+ * max health by 200 and strength by 2.
+ * 
  */
-public class StunEffect implements SkillEffect, ActionListener {
-    private Timer timer;
-    private Character target;
+public class DecreaseStrengthAndHealth implements ActionListener, SkillEffect {
     private BufferedImage effectGraphic;
-    private boolean effectActive;   
+    private Timer timer;
+    private boolean effectActive;
     private int effectNumber;
+    private Character target;
     
-    public StunEffect(String effectGraphicPath) {
+    public DecreaseStrengthAndHealth(String effectGraphicPath) {
         effectActive = false;
         try {
             effectGraphic = ImageIO.read(new File(effectGraphicPath));
         }catch (Exception e) {
             System.out.println("efektiä ei löytynyt");
         }
-        timer = new Timer(4000, this);
-    }
+        this.timer = new Timer(1000, this);
+    }    
 
-    /**
-     * Target is stunned, the stun timer is started and the effect is added to the target's debuff list
-     * @param target 
-     */
     @Override
-    public void triggerEffect(Character target) {  
-        this.target = target;       
+    public void triggerEffect(Character target) {
+        this.target = target;
+        target.setMaxHealth(target.getMaxHealth()-200);
+        if (target.getHealth() > target.getMaxHealth()) {
+            target.healthToFull();
+        }
+        target.setStrength(target.getStrength()-2);
         target.stun();
         target.addDebuff(this);
         effectNumber = target.getDebuffs().size()-1;
         effectActive = true;
         timer.start();
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         endEffect();
@@ -52,7 +54,7 @@ public class StunEffect implements SkillEffect, ActionListener {
 
     @Override
     public BufferedImage getEffectGraphic() {
-        return this.effectGraphic;
+        return effectGraphic;
     }
 
     @Override
@@ -65,16 +67,16 @@ public class StunEffect implements SkillEffect, ActionListener {
         target.unStun();        
         effectActive = false;
         timer.stop();
-    }   
-    
+    }
+
     @Override
     public void decreaseEffectNumber() {
         effectNumber--;
-    }   
+    }
 
     @Override
     public String getType() {
-        return "stun";
+        return "stun, strength and health";
     }
 
     @Override

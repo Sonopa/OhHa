@@ -12,7 +12,7 @@ public class Listener implements KeyListener {
     private Game game;
     
     public Listener (Component component, Player player, Monster monster, Game game) {
-        this.player = player;        
+        this.player = player;
         this.monster = monster;
         this.game = game;
     }    

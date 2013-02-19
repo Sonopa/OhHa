@@ -1,13 +1,11 @@
 package UI;
 
-import UI.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Scanner;
 import javax.swing.JButton;
 import ohha.Game;
-import UI.Settings;
 
 /**
  * Listener for Menu
@@ -45,6 +43,7 @@ public class MenuListener implements ActionListener {
             File save = new File("src/ohha/save.txt");
             try {
                 Scanner lukija = new Scanner(save);
+                peli.setDifficulty(Integer.parseInt(lukija.nextLine()));
                 peli.setLevel(Integer.parseInt(lukija.nextLine()));
                 peli.run();
                 peli.getPlayer().setStrength(Integer.parseInt(lukija.nextLine()));
@@ -64,7 +63,7 @@ public class MenuListener implements ActionListener {
         }else if (ae.getSource() == settings) {
             if (!menuCreated) {
                 setting.run();
-                menuCreated = true;   
+                menuCreated = true;
             }else {
                 setting.asetaNakyvaksi();
                 setting.getFrame().setLocationRelativeTo(null);

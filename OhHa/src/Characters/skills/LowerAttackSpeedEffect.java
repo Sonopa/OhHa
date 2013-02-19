@@ -8,12 +8,15 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
+/**
+ * A skilleffect that lowers target's attack speed to 1 for 6 seconds. 
+ */
 public class LowerAttackSpeedEffect implements SkillEffect, ActionListener {
     private Timer timer;
     private int attackSpeed;
     private Character target;
     private BufferedImage effectGraphic;
-    private boolean effectActive;    
+    private boolean effectActive;
     private int effectNumber;
     
     public LowerAttackSpeedEffect(String effectGraphicPath) {

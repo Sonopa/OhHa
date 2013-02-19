@@ -24,11 +24,11 @@ public class SettingsListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == normal) {
-            setting.setDifficulty(1);
+            setting.setDifficulty(0);
         }else if (ae.getSource() == challenging) {            
-            setting.setDifficulty(2);
+            setting.setDifficulty(1);
         }else if (ae.getSource() == hard) {
-            setting.setDifficulty(3);
+            setting.setDifficulty(2);
         }else if (ae.getSource() == exit) {
             setting.asetaNakymattomaksi();
         }

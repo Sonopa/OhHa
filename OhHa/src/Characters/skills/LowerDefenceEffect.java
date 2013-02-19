@@ -8,6 +8,10 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
+/**
+ * A skilleffect that lowers target's defence to 1 for 5 seconds. If another defence altering effect
+ * is already active on the target, does not trigger effect
+ */
 public class LowerDefenceEffect implements SkillEffect, ActionListener {
     private Timer timer;
     private int defence;

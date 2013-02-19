@@ -7,8 +7,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
- * A subclass of character that represent the game's monster
- * @author 
+ * A subclass of character that represent the game's monster 
  */
 public class Monster extends Character implements ActionListener {
     private ArrayList<Skill> skills;

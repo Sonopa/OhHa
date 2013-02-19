@@ -10,7 +10,9 @@ import Characters.skills.Skill;
 import Characters.skills.SkillContainer;
 import Characters.skills.SkillEffect;
 import UI.ExperiencePointsUI;
+import UI.Menu;
 import UI.PauseMenu;
+import UI.Settings;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -28,8 +30,7 @@ import UI.SkillUI;
 import maps.LevelContainer;
 
 /**
- * The main class that contains all of the game's components
- * @author 
+ * The main class that contains all of the game's components. 
  */
 public class Game extends JFrame implements Runnable, ActionListener {
     private JFrame frame;
@@ -98,6 +99,7 @@ public class Game extends JFrame implements Runnable, ActionListener {
     }
     
     public void gameStart() {
+        player.updateAttackSpeed();
         expUI.dispose();
         skillUI.dispose();
         timer.start();
@@ -141,14 +143,16 @@ public class Game extends JFrame implements Runnable, ActionListener {
     public Player createPlayer() {        
         ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
         try {
-            BufferedImage normalState = ImageIO.read(new File("src/images/orcn.png"));            
-            BufferedImage attackState = ImageIO.read(new File("src/images/orca.png"));
-            BufferedImage blockState = ImageIO.read(new File("src/images/orcd.png"));
+            BufferedImage normalState = ImageIO.read(new File("src/images/stickman0.png"));            
+            BufferedImage attackState = ImageIO.read(new File("src/images/stickman1.png"));
+            BufferedImage attackState2 = ImageIO.read(new File("src/images/stickman2.png"));
+            BufferedImage blockState = ImageIO.read(new File("src/images/stickman3.png"));
             images.add(normalState);
             images.add(attackState);
+            images.add(attackState2);
             images.add(blockState);
         }catch (Exception e){}
-        player = new Player(10000,1,25,1,images);
+        player = new Player(500,1,1,1,images);
         return player;
     }
     
@@ -160,7 +164,16 @@ public class Game extends JFrame implements Runnable, ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (monster.isDead()) {
-            player.gainExperiencePoints(5);
+            if (level==9) {   
+                timer.stop();
+                this.removeAll();
+                frame.dispose();
+                Settings settings = new Settings();
+                Menu menu = new Menu(settings);
+                menu.run();                
+                return;
+            }
+            player.gainExperiencePoints(6);
             if (level%2 == 0) {
                 player.gainSkillPoints(1);
             }
@@ -232,6 +245,7 @@ public class Game extends JFrame implements Runnable, ActionListener {
     public void saveGame() {
         try {
             FileWriter writer = new FileWriter("src/ohha/save.txt");
+            writer.write(difficulty + "\n");
             writer.write(level + "\n");
             writer.write(player.getStrength() + "\n");
             writer.write(player.getAttackSpeed() + "\n");
@@ -246,5 +260,9 @@ public class Game extends JFrame implements Runnable, ActionListener {
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
     }
 }

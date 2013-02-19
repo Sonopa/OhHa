@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.Timer;
 /**
  * Represents a character and handles character's attributes, effects and hit cooldowns.
@@ -47,8 +48,8 @@ public abstract class Character implements ActionListener {
         isStunned = false;
         hitAvailable = true;
         this.image = hahmoKuvat.get(0);
-        cooldownTimer = new Timer(900-(30*this.attackSpeed), this);
-        blocking = false;        
+        cooldownTimer = new Timer(700-(22*this.attackSpeed), this);
+        blocking = false;
         buffs = new ArrayList<SkillEffect>();        
         debuffs = new ArrayList<SkillEffect>();
     }
@@ -71,8 +72,9 @@ public abstract class Character implements ActionListener {
      */
     public void hit(Character target) {
         if (hitAvailable && !isStunned && !isDead) {
-            this.setImage(1);
-            target.takeDamage(this.getStrength()*10);
+            Random r = new Random();
+            this.setImage(r.nextInt(2)+1);
+            target.takeDamage(10+this.getStrength()*10);
             hitAvailable = false;
             cooldownTimer.start();
         }
@@ -119,15 +121,27 @@ public abstract class Character implements ActionListener {
     
     public void setStrength(int str) {
         this.strength = str;
+        if (this.strength < 1) {
+            this.strength = 1;
+        }
     }    
     public void setAttackSpeed(int speed) {
         this.attackSpeed = speed;
+        if (this.attackSpeed < 1) {
+            this.attackSpeed = 1;
+        }
     }
     public void setDefence(int def) {
         this.defence = def;
+        if (this.defence < 1) {
+            this.defence = 1;
+        }
     }
     public void setMaxHealth(int maxHp) {
         this.maxHealth = maxHp;
+        if (this.maxHealth < 1) {
+            this.maxHealth = 1;
+        }
     }
     
     public void setTarget(Character target) {
@@ -157,7 +171,7 @@ public abstract class Character implements ActionListener {
     public void setBlockState() {        
         if (!blocking && !isStunned) {   
             setDefence(defence*2);
-            setImage(2);
+            setImage(3);
             blocking = true;
         }
     }

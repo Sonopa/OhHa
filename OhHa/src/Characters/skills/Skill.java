@@ -17,14 +17,29 @@ import UI.SkillButton;
  */
 public class Skill implements ActionListener {
     private String name;
-    private int dmg;    
-    private SkillEffect effect;
+    /**
+     * Amount of damage the skill deal to the target
+     */
+    private int dmg;
+    /**
+     * The main effect for the skill
+     */
+    private SkillEffect effect;    
     private Timer cooldowntimer;
     private boolean used;
+    /**
+     * Amount that the user is healed when the skill is used
+     */
     private int healing;
     private BufferedImage skillIconUsed;  //taitojen ikonit UI:ta varten
     private BufferedImage skillIconUsable;
+    /**
+     * A description of the skill for the SkillUI
+     */
     private String tooltip;
+    /*
+     * SkillButton for SkillUI
+     */
     private JButton button;    
     
     public Skill(String name, int dmg, int healing, SkillEffect effect, int cooldown,

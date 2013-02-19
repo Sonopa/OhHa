@@ -18,8 +18,7 @@ import javax.swing.WindowConstants;
 import ohha.Game;
 
 /**
- * A user interface for choosing skills.
- * @author Mertaset
+ * A user interface for choosing skills. 
  */
 public class SkillUI extends JPanel {    
     private JFrame frame;

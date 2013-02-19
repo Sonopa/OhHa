@@ -14,9 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.WindowConstants;
 
-/**
- * A menu for changing game difficulty
- * @author Mertaset
+/** 
+ * A menu for changing game difficulty. 
  */
 public class Settings implements Runnable {
 
@@ -24,7 +23,7 @@ public class Settings implements Runnable {
     private int difficulty;
     
     public Settings() {
-        this.difficulty = 1;
+        this.difficulty = 0;
     }
 
     @Override
@@ -83,23 +82,23 @@ public class Settings implements Runnable {
         return panel;
     }
     
-    public void setDifficulty(int difficulty13) {
-        this.difficulty = difficulty13;
+    public void setDifficulty(int difficulty02) {
+        this.difficulty = difficulty02;
     }
     
     public int getDifficulty() {
         return this.difficulty;
-    }
-    
-    public void asetaNakymattomaksi() {
-        frame.setVisible(false);
-    }
-    
-    public void asetaNakyvaksi() {
-        frame.setVisible(true);
-    }
+    }   
     
     public JFrame getFrame() {
         return frame;
+    }
+
+    void asetaNakymattomaksi() {
+        frame.setVisible(false);
+    }
+
+    void asetaNakyvaksi() {
+        frame.setVisible(true);
     }
 }

@@ -29,16 +29,16 @@ public class LevelContainer {
      * Creates all maps
      */
     public void createMaps() {
-        this.createMap("src/images/tausta.jpg", 1);
-        this.createMap("src/images/map2.jpg", 2);
-        this.createMap("src/images/tausta33.jpg", 3);
-        this.createMap("src/images/tausta.jpg", 4);
-        this.createMap("src/images/map2.jpg", 5);
-        this.createMap("src/images/tausta33.jpg", 6);
-        this.createMap("src/images/tausta.jpg", 7);
-        this.createMap("src/images/map2.jpg", 8);
-        this.createMap("src/images/tausta33.jpg", 9);
-        this.createMap("src/images/tausta.jpg", 10);     
+        this.createMap("src/images/map1.jpg", 0);
+        this.createMap("src/images/map2.jpg", 1);
+        this.createMap("src/images/map3.jpg", 2);
+        this.createMap("src/images/map4.jpg", 3);
+        this.createMap("src/images/map5.jpg", 4);
+        this.createMap("src/images/map1.jpg", 5);
+        this.createMap("src/images/map2.jpg", 6);
+        this.createMap("src/images/map3.jpg", 7);
+        this.createMap("src/images/map4.jpg", 8);
+        this.createMap("src/images/map5.jpg", 9);     
     }
     
     /**
@@ -47,7 +47,7 @@ public class LevelContainer {
      * @param level 
      */
     public void createMap(String bgImagePath, int level) {
-        Map kentta = new Map(bgImagePath, monsters.get(level-1));
+        Map kentta = new Map(bgImagePath, monsters.get(level));
         maps.add(kentta);
     }
     
@@ -55,16 +55,16 @@ public class LevelContainer {
      * Creates all monsters
      */
     public void createMonsters() {
-        this.createMonster("src/images/goblin.png", "src/images/goblina.png", "src/images/goblind.png", 1);        
-        this.createMonster("src/images/vihu0.png", "src/images/vihu1.png", "src/images/vihu2.png", 2);
-        this.createMonster("src/images/ukkon.png", "src/images/ukkol.png", "src/images/ukkop.png", 3);
-        this.createMonster("src/images/vihu0.png", "src/images/vihu1.png", "src/images/vihu2.png", 4);        
-        this.createMonster("src/images/goblin.png", "src/images/goblina.png", "src/images/goblind.png", 5);        
-        this.createMonster("src/images/vihu0.png", "src/images/vihu1.png", "src/images/vihu2.png", 6);
-        this.createMonster("src/images/ukkon.png", "src/images/ukkol.png", "src/images/ukkop.png", 7);
-        this.createMonster("src/images/vihu0.png", "src/images/vihu1.png", "src/images/vihu2.png", 8);
-        this.createMonster("src/images/ukkon.png", "src/images/ukkol.png", "src/images/ukkop.png", 9);
-        this.createMonster("src/images/goblin.png", "src/images/goblina.png", "src/images/goblind.png", 10);
+        this.createMonster("src/images/enemy10.png", "src/images/enemy11.png","src/images/enemy12.png", "src/images/enemy13.png", 0);        
+        this.createMonster("src/images/enemy20.png", "src/images/enemy21.png","src/images/enemy22.png", "src/images/enemy23.png", 1);
+        this.createMonster("src/images/enemy30.png", "src/images/enemy31.png","src/images/enemy32.png", "src/images/enemy33.png", 2);
+        this.createMonster("src/images/enemy40.png", "src/images/enemy41.png","src/images/enemy42.png", "src/images/enemy43.png", 3);        
+        this.createMonster("src/images/enemy50.png", "src/images/enemy51.png","src/images/enemy52.png", "src/images/enemy53.png", 4);        
+        this.createMonster("src/images/enemy10.png", "src/images/enemy11.png","src/images/enemy12.png", "src/images/enemy13.png", 5);
+        this.createMonster("src/images/enemy20.png", "src/images/enemy21.png","src/images/enemy22.png", "src/images/enemy23.png", 6);
+        this.createMonster("src/images/enemy30.png", "src/images/enemy31.png","src/images/enemy32.png", "src/images/enemy33.png", 7);
+        this.createMonster("src/images/enemy40.png", "src/images/enemy41.png","src/images/enemy42.png", "src/images/enemy43.png", 8);
+        this.createMonster("src/images/enemy50.png", "src/images/enemy51.png","src/images/enemy52.png", "src/images/enemy53.png", 9);
     }
     
     /**
@@ -72,24 +72,26 @@ public class LevelContainer {
      * @param monsterNPath
      * @param monsterAPath
      * @param monsterBPath
-     * @param taso 
+     * @param level 
      */
-    public void createMonster(String monsterNPath, String monsterAPath, String monsterBPath, int taso) {
+    public void createMonster(String monsterNPath, String monsterAPath, String monsterA2Path, String monsterBPath, int level) {
         ArrayList<BufferedImage> animations = new ArrayList<BufferedImage>();
         try {
             BufferedImage normalState = ImageIO.read(new File(monsterNPath));
             BufferedImage attackState = ImageIO.read(new File(monsterAPath));
+            BufferedImage attackState2 = ImageIO.read(new File(monsterA2Path));
             BufferedImage blockState = ImageIO.read(new File(monsterBPath));
-            animations.add(normalState);
+            animations.add(normalState);            
             animations.add(attackState);
+            animations.add(attackState2);
             animations.add(blockState);
         }catch (Exception e){}
         ArrayList<Skill> skillList = new ArrayList<Skill>();
-        for (int i=0; i<taso; i++) {
+        for (int i=0; i<=level; i++) {
             skillList.add(skills.get(i));
         }
-        Monster monster = new Monster(500*taso+500*difficulty, 2*taso+2*difficulty, 2*taso+2*difficulty,
-                2*taso+2*difficulty, animations, skillList);        
+        Monster monster = new Monster(200+200*level+50*(difficulty)*(level+1), 1+2*level+difficulty*(level+1), 1+2*level+difficulty*(level+1),
+                1+2*level+difficulty*(level+1), animations, skillList);
         monsters.add(monster);
     }
     

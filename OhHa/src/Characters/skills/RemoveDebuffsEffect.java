@@ -6,8 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
- * Removes all active debuffs from the user. Doesn't trigger hit cooldown.
- * @author Mertaset
+ * Removes all active debuffs from the user. Doesn't trigger hit cooldown. 
  */
 public class RemoveDebuffsEffect implements SkillEffect {    
     private Character target;  
