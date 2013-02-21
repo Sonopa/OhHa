@@ -25,7 +25,7 @@ public class PauseMenu extends JPanel {
     
     public void make() {
         frame = new JFrame("Paused");
-        frame.setPreferredSize(new Dimension(150, 250));
+        frame.setPreferredSize(new Dimension(150, 200));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);        
         
         luoKomponentit(frame.getContentPane());
@@ -44,13 +44,13 @@ public class PauseMenu extends JPanel {
         frame.setLayout(new GridLayout(3,1));
         frame.setBackground(Color.BLACK);
         JButton contin = new JButton("Continue");
-        JButton save = new JButton("Save Game");        
+        JButton save = new JButton("Save Game");      
         JButton quit = new JButton("Quit");
         frame.add(contin);
-        frame.add(save);        
+        frame.add(save);
         frame.add(quit);
         contin.setBackground(Color.black);
-        contin.setForeground(Color.green);        
+        contin.setForeground(Color.green); 
         save.setBackground(Color.black);
         save.setForeground(Color.green);
         quit.setBackground(Color.black);

@@ -39,25 +39,25 @@ public class Menu implements Runnable {
         frame.setBackground(Color.BLACK);
         JButton start = new JButton("New Game");
         JButton continueSaved = new JButton("Continue");
-        JButton settings = new JButton("Settings");
+        JButton difficulty = new JButton("Difficulty");
         JButton quit = new JButton("Quit");
         frame.add(start);
         frame.add(continueSaved);
-        frame.add(settings);
+        frame.add(difficulty);
         frame.add(quit);
         start.setBackground(Color.black);
         start.setForeground(Color.green);
-        settings.setBackground(Color.black);
-        settings.setForeground(Color.green);
+        difficulty.setBackground(Color.black);
+        difficulty.setForeground(Color.green);
         continueSaved.setBackground(Color.black);
         continueSaved.setForeground(Color.green);
         quit.setBackground(Color.black);
         quit.setForeground(Color.green);
-        MenuListener kuuntelija = new MenuListener(this, setting, start, continueSaved, settings, quit);        
+        MenuListener kuuntelija = new MenuListener(this, setting, start, continueSaved, difficulty, quit);        
         
         start.addActionListener(kuuntelija);
         continueSaved.addActionListener(kuuntelija);
-        settings.addActionListener(kuuntelija);
+        difficulty.addActionListener(kuuntelija);
         quit.addActionListener(kuuntelija);
     }
     

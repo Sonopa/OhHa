@@ -61,7 +61,7 @@ public class ExperiencePointsUI extends JPanel {
         JButton plusDefence = new JButton("+"); 
         plusDefence.setForeground(Color.GREEN);
         plusDefence.setBackground(Color.BLACK); 
-        JLabel healthLabel = new JLabel("Max health:  " + game.getPlayer().getMaxHealth());
+        JLabel healthLabel = new JLabel("Maximum health:  " + game.getPlayer().getMaxHealth());
         healthLabel.setForeground(Color.GREEN);
         JButton plusHealth = new JButton("+");
         plusHealth.setForeground(Color.GREEN);

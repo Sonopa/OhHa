@@ -105,8 +105,7 @@ public class Game extends JFrame implements Runnable, ActionListener {
         timer.start();
         try {
             Thread.sleep(1000);
-        } catch (InterruptedException ex) {}
-        System.out.println("Start!");       
+        } catch (InterruptedException ex) {}             
         player.unStun();
         player.healthToFull();
         AI.startAI();
@@ -152,7 +151,7 @@ public class Game extends JFrame implements Runnable, ActionListener {
             images.add(attackState2);
             images.add(blockState);
         }catch (Exception e){}
-        player = new Player(500,1,1,1,images);
+        player = new Player(500,2,2,2,images);
         return player;
     }
     

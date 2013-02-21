@@ -43,7 +43,7 @@ public class ExpUIListener implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == plusStrength) {             
             game.getPlayer().upStrength();
-            strengthLabel.setText("Strength: " + game.getPlayer().getStrength());
+            strengthLabel.setText("Strength:  " + game.getPlayer().getStrength());
             points.setText("Experience points left: " + game.getPlayer().getExperiencePoints());
             if (game.getPlayer().getStrength() >= 30) {
                 plusStrength.setEnabled(false);
@@ -51,7 +51,7 @@ public class ExpUIListener implements ActionListener {
         }
         else if (ae.getSource() == plusAttackSpeed) {
             game.getPlayer().upAttackSpeed();            
-            attackSpeedLabel.setText("Attack speed: " + game.getPlayer().getAttackSpeed());
+            attackSpeedLabel.setText("Attack speed:  " + game.getPlayer().getAttackSpeed());
             points.setText("Experience points left: " + game.getPlayer().getExperiencePoints());
             if (game.getPlayer().getAttackSpeed() >= 30) {
                 plusAttackSpeed.setEnabled(false);
@@ -59,7 +59,7 @@ public class ExpUIListener implements ActionListener {
         }
         else if (ae.getSource() == plusDefence) {
             game.getPlayer().upDefence();
-            defenceLabel.setText("Defence: " + game.getPlayer().getDefence());
+            defenceLabel.setText("Defence:  " + game.getPlayer().getDefence());
             points.setText("Experience points left: " + game.getPlayer().getExperiencePoints());
             if (game.getPlayer().getDefence() >= 30) {
                 plusDefence.setEnabled(false);
@@ -67,7 +67,7 @@ public class ExpUIListener implements ActionListener {
         }
         else if (ae.getSource() == plusMaxHealth) {
             game.getPlayer().upMaxHealth();            
-            healthLabel.setText("Maximum health: " + game.getPlayer().getMaxHealth());
+            healthLabel.setText("Maximum health:  " + game.getPlayer().getMaxHealth());
             points.setText("Experience points left: " + game.getPlayer().getExperiencePoints());
             if (game.getPlayer().getMaxHealth() >= 6000) {
                 plusMaxHealth.setEnabled(false);

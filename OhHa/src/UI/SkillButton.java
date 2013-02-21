@@ -13,7 +13,7 @@ import javax.swing.JButton;
  * A custom button for SkillUI. Show's the image of the skill 
  */
 public class SkillButton extends JButton {
-    private BufferedImage skillImage;    
+    private BufferedImage skillImage;
     
     public SkillButton(String skillImagePath) {
         try {
