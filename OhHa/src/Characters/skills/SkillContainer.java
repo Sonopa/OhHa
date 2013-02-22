@@ -59,25 +59,25 @@ public class SkillContainer {
      * Creates all monster skills.
      */
     public void createMonsterSkills() {
-        createMonsterSkill("Stun", 0, 0, new StunEffect("src/images/stunImage.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
+        createMonsterSkill("Stun", 0, 0, new StunEffect("images/stunImage.png"), 10000, "images/stunIcon.png", "images/stunIconUsable.png",
                 "Stun: Stuns the enemy for 4 seconds (10s cooldown) [-1 skillpoint]");
-        createMonsterSkill("Lower defence", 50, 0, new LowerDefenceEffect("src/images/LowerDefenceEffect.png"), 10000, "src/images/LowerDefenceUsed.png", "src/images/LowerDefenceUsable.png", 
+        createMonsterSkill("Lower defence", 50, 0, new LowerDefenceEffect("images/LowerDefenceEffect.png"), 10000, "images/LowerDefenceUsed.png", "images/LowerDefenceUsable.png", 
                 "Lower Defence: Deals 50 damage and lowers the enemy's defence to 1 and make's him unable to increase defence for 5 seconds (10s cooldown) [-1 skillpoint]");
-        createMonsterSkill("Lower Attack Speed", 0, 0, new LowerAttackSpeedEffect("src/images/LowerSpeed.png"), 12000, "src/images/LowerSpeedN.png", "src/images/LowerSpeedU.png",
+        createMonsterSkill("Lower Attack Speed", 0, 0, new LowerAttackSpeedEffect("images/LowerSpeed.png"), 12000, "images/LowerSpeedN.png", "images/LowerSpeedU.png",
                 "Lower Attack Speed: Lowers target's attack speed to 1 for 6 seconds (12s cooldown) [-1 skillpoint]");
-        createMonsterSkill("HoT", 0, 400, new HealOverTimeEffect("src/images/Renew.png"), 15000, "src/images/RenewNU.png", "src/images/RenewU.png",
+        createMonsterSkill("HoT", 0, 400, new HealOverTimeEffect("images/Renew.png"), 15000, "images/RenewNU.png", "images/RenewU.png",
                 "Renew: Heals for 400 every 4 seconds for 12 seconds (15s cooldown) [-1 skillpoint]");
-        createMonsterSkill("Dmg and heal", 200, 200, new NoEffect(), 12000, "src/images/DmgAndHealN.png", "src/images/DmgAndHealU.png",
+        createMonsterSkill("Dmg and heal", 200, 200, new NoEffect(), 12000, "images/DmgAndHealN.png", "images/DmgAndHealU.png",
                 "Weaken: Stuns the target for 1 second and permanently decreases target's max health by 200 and strength by 2 (12s cooldown) [-1 skillpoint]");
-        createMonsterSkill("Remove Debuffs", 0, 100, new RemoveDebuffsEffect(), 10000, "src/images/removeDebuffsn.png", "src/images/removeDebuffsu.png",
+        createMonsterSkill("Remove Debuffs", 0, 100, new RemoveDebuffsEffect(), 10000, "images/removeDebuffsn.png", "images/removeDebuffsu.png",
                 "Remove Debuffs: Removes all debuffs from the player and heals for 100 (10s cooldown) [-1 skillpoint]");
-        createMonsterSkill("Heal", 0, 900, new NoEffect(), 8000, "src/images/HealN.png", "src/images/HealU.png",
+        createMonsterSkill("Heal", 0, 900, new NoEffect(), 8000, "images/HealN.png", "images/HealU.png",
                 "Heal: Heals for 900 (8s cooldown) [-1 skillpoint]");
-        createMonsterSkill("Hard hit", 500, 0, new NoEffect(), 6000, "src/images/HhitN.png", "src/images/HhitU.png",
+        createMonsterSkill("Hard hit", 500, 0, new NoEffect(), 6000, "images/HhitN.png", "images/HhitU.png",
                 "Hard hit: Deals 500 damage (6s cooldown) [-1 skillpoint]");
-        createMonsterSkill("Ultimate Defence", 0, 1000, new IncreaseDefence("src/images/UDef.png"), 15000, "src/images/UDefNU.png", "src/images/UDefU.png",
+        createMonsterSkill("Ultimate Defence", 0, 1000, new IncreaseDefenceEffect("images/UDef.png"), 15000, "images/UDefNU.png", "images/UDefU.png",
                 "Ultimate Defence: Doubles defence for 6 seconds and heals for 1000 (15s cooldown) [-2 skillpoints]");
-        createMonsterSkill("Ultimate Offence", 400, 0, new DamageOverTimeEffect("src/images/Pain.png"), 15000, "src/images/PainN.png", "src/images/PainU.png",
+        createMonsterSkill("Ultimate Offence", 400, 0, new DamageOverTimeEffect("images/Pain.png"), 15000, "images/PainN.png", "images/PainU.png",
                 "Ultimate Offence: Deals 400 damage and then 200 every 2 seconds for 8 seconds (15s cooldown) [-2 skillpoints]");
     }
     
@@ -85,25 +85,25 @@ public class SkillContainer {
      * Creates all player skills.
      */
     public void createSkills() {
-        createSkill("Stun", 0, 0, new StunEffect("src/images/stunImage.png"), 10000, "src/images/stunIcon.png", "src/images/stunIconUsable.png",
+        createSkill("Stun", 0, 0, new StunEffect("images/stunImage.png"), 10000, "images/stunIcon.png", "images/stunIconUsable.png",
                 "Stun: Stuns the enemy for 4 seconds (10s cooldown) [-1 skillpoint]");
-        createSkill("Lower defence", 50, 0, new LowerDefenceEffect("src/images/LowerDefenceEffect.png"), 10000, "src/images/LowerDefenceUsed.png", "src/images/LowerDefenceUsable.png", 
+        createSkill("Lower defence", 50, 0, new LowerDefenceEffect("images/LowerDefenceEffect.png"), 10000, "images/LowerDefenceUsed.png", "images/LowerDefenceUsable.png", 
                 "Lower Defence: Deals 50 damage and lowers the enemy's defence to 1 and make's him unable to increase defence for 5 seconds (10s cooldown) [-1 skillpoint]");
-        createSkill("Lower Attack Speed", 0, 0, new LowerAttackSpeedEffect("src/images/LowerSpeed.png"), 12000, "src/images/LowerSpeedN.png", "src/images/LowerSpeedU.png",
+        createSkill("Lower Attack Speed", 0, 0, new LowerAttackSpeedEffect("images/LowerSpeed.png"), 12000, "images/LowerSpeedN.png", "images/LowerSpeedU.png",
                 "Lower Attack Speed: Lowers target's attack speed to 1 for 6 seconds (12s cooldown) [-1 skillpoint]");
-        createSkill("HoT", 0, 400, new HealOverTimeEffect("src/images/Renew.png"), 15000, "src/images/RenewNU.png", "src/images/RenewU.png",
+        createSkill("HoT", 0, 400, new HealOverTimeEffect("images/Renew.png"), 15000, "images/RenewNU.png", "images/RenewU.png",
                 "Renew: Heals for 400 every 4 seconds for 12 seconds (15s cooldown) [-1 skillpoint]");
-        createSkill("Weaken", 0, 0, new DecreaseStrengthAndHealth("src/images/stunImage.png"), 12000, "src/images/WeakenN.png", "src/images/WeakenU.png",
+        createSkill("Weaken", 0, 0, new DecreaseStrengthAndHealth("images/stunImage.png"), 12000, "images/WeakenN.png", "images/WeakenU.png",
                 "Weaken: Stuns the target for 1 second and permanently decreases target's max health by 200 and strength by 2 (12s cooldown) [-1 skillpoint]");
-        createSkill("Remove Debuffs", 0, 100, new RemoveDebuffsEffect(), 10000, "src/images/removeDebuffsn.png", "src/images/removeDebuffsu.png",
+        createSkill("Remove Debuffs", 0, 100, new RemoveDebuffsEffect(), 10000, "images/removeDebuffsn.png", "images/removeDebuffsu.png",
                 "Remove Debuffs: Removes all debuffs from the player and heals for 100 (10s cooldown) [-1 skillpoint]");
-        createSkill("Heal", 0, 900, new NoEffect(), 8000, "src/images/HealN.png", "src/images/HealU.png",
+        createSkill("Heal", 0, 900, new NoEffect(), 8000, "images/HealN.png", "images/HealU.png",
                 "Heal: Heals for 900 (8s cooldown) [-1 skillpoint]");
-        createSkill("Hard hit", 500, 0, new NoEffect(), 6000, "src/images/HhitN.png", "src/images/HhitU.png",
+        createSkill("Hard hit", 500, 0, new NoEffect(), 6000, "images/HhitN.png", "images/HhitU.png",
                 "Hard hit: Deals 500 damage (6s cooldown) [-1 skillpoint]");
-        createSkill("Ultimate Defence", 0, 1000, new IncreaseDefence("src/images/UDef.png"), 15000, "src/images/UDefNU.png", "src/images/UDefU.png",
+        createSkill("Ultimate Defence", 0, 1000, new IncreaseDefenceEffect("images/UDef.png"), 15000, "images/UDefNU.png", "images/UDefU.png",
                 "Ultimate Defence: Doubles defence for 6 seconds and heals for 1000 (15s cooldown) [-2 skillpoints]");
-        createSkill("Ultimate Offence", 400, 0, new DamageOverTimeEffect("src/images/Pain.png"), 15000, "src/images/PainN.png", "src/images/PainU.png",
+        createSkill("Ultimate Offence", 400, 0, new DamageOverTimeEffect("images/Pain.png"), 15000, "images/PainN.png", "images/PainU.png",
                 "Ultimate Offence: Deals 400 damage and then 200 every 2 seconds for 8 seconds (15s cooldown) [-2 skillpoints]");
     }
     

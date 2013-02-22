@@ -2,8 +2,8 @@
 package Characters.skills;
 
 import Characters.Character;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  * Removes all active debuffs from the user. Doesn't trigger hit cooldown. 
@@ -24,7 +24,7 @@ public class RemoveDebuffsEffect implements SkillEffect {
     }
     
     @Override
-    public BufferedImage getEffectGraphic() {
+    public ImageIcon getEffectGraphic() {
         return null;
     }
 

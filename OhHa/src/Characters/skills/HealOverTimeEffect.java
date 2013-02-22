@@ -3,18 +3,15 @@ package Characters.skills;
 import Characters.Character;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 /**
- * A skilleffect that heals the user for 400 every 4 seconds for 12 seconds
- * @author 
+ * A skilleffect that heals the user for 400 every 4 seconds for 12 seconds. 
  */
 public class HealOverTimeEffect implements SkillEffect, ActionListener {
     private Timer timer;
     private Character target;
-    private BufferedImage effectGraphic;
+    private ImageIcon effectGraphic;
     private boolean effectActive;
     private int tickCount;
     private int effectNumber;
@@ -23,11 +20,7 @@ public class HealOverTimeEffect implements SkillEffect, ActionListener {
         this.tickCount = 0;
         timer = new Timer(4000, this);
         effectActive = false;
-        try {
-            effectGraphic = ImageIO.read(new File(effectGraphicPath));
-        }catch (Exception e) {
-            System.out.println("efektiä ei löytynyt");
-        }        
+        effectGraphic = new ImageIcon(this.getClass().getClassLoader().getResource(effectGraphicPath));          
     }
     
     @Override
@@ -36,7 +29,7 @@ public class HealOverTimeEffect implements SkillEffect, ActionListener {
     }
     
     @Override
-    public BufferedImage getEffectGraphic() {
+    public ImageIcon getEffectGraphic() {
         return this.effectGraphic;
     }
 

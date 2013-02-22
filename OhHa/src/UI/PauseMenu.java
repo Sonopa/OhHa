@@ -9,16 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import ohha.Game;
-
-public class PauseMenu extends JPanel {
-    private JFrame frame;
-    private Game game;
-    
     /**
      * A menu that is shown when the game is paused. Gives the options to continue game, save game
      * or to quit game.
      * @param game 
      */
+public class PauseMenu extends JPanel {
+    private JFrame frame;
+    private Game game;    
+    
     public PauseMenu(Game game) {
         this.game = game;
     }

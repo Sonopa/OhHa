@@ -1,23 +1,35 @@
 package Characters;
 
 import Characters.skills.Skill;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.ImageIcon;
 /**
  * A subclass of character that represents the player. 
  * Handles player experience and skill points.
- * @author 
  */
 public class Player extends Character {
     private HashMap<String, Skill> skills;
     private ArrayList<Skill> skillList;
+    /**
+     * Points used to improve attributes.
+     */
     private int experiencePoints;
+    /**
+     * Points used for learning skills.
+     */
     private int skillPoints;
     
     
-    public Player(int health, int attackSpeed, int strength, int defence, ArrayList<BufferedImage> hahmoKuvat) {
+    public Player(int health, int attackSpeed, int strength, int defence, ArrayList<ImageIcon> hahmoKuvat) {
         super(health, attackSpeed, strength, defence, hahmoKuvat);
+        skills = new HashMap<String, Skill>();
+        experiencePoints = 0;
+        skillPoints = 0;
+        skillList = new ArrayList<Skill>();
+    }
+    public Player(int health, int attackSpeed, int strength, int defence) {
+        super(health, attackSpeed, strength, defence);
         skills = new HashMap<String, Skill>();
         experiencePoints = 0;
         skillPoints = 0;

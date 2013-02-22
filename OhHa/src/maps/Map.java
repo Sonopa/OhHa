@@ -1,29 +1,21 @@
 package maps;
 
 import Characters.Monster;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * A map represents a level in the game. Has background image and a monster. 
  */
 public class Map {
-    private Monster monster;
-    private String mapImg;
-    private BufferedImage bg;
+    private Monster monster;    
+    private ImageIcon bg;
     
     public Map(String mapImagePath, Monster monster) {
-        this.monster = monster;
-        this.mapImg = mapImagePath;
-        try {
-            bg = ImageIO.read(new File(mapImg));
-        }catch (Exception e){
-            System.out.println(e);
-        }
+        this.monster = monster;        
+        bg = new ImageIcon(this.getClass().getClassLoader().getResource(mapImagePath));     
     }
     
-    public BufferedImage getMapImage() {        
+    public ImageIcon getMapImage() {
         return bg;
     }
     

@@ -2,9 +2,7 @@ package Characters.skills;
 import Characters.Character;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 /**
  * A skilleffect that deals 200 damage every 2 seconds for 8 seconds 
@@ -12,7 +10,7 @@ import javax.swing.Timer;
 public class DamageOverTimeEffect implements SkillEffect, ActionListener {
     private Timer timer;
     private Character target;    
-    private BufferedImage effectGraphic;
+    private ImageIcon effectGraphic;
     private boolean effectActive;
     private int tickCount;
     private int effectNumber;
@@ -20,12 +18,8 @@ public class DamageOverTimeEffect implements SkillEffect, ActionListener {
     public DamageOverTimeEffect(String effectGraphicPath) {
         this.tickCount = 0;
         timer = new Timer(2000, this);
-        effectActive = false;
-        try {
-            effectGraphic = ImageIO.read(new File(effectGraphicPath));
-        }catch (Exception e) {
-            System.out.println("efektiä ei löytynyt");
-        }
+        effectActive = false;        
+        effectGraphic = new ImageIcon(this.getClass().getClassLoader().getResource(effectGraphicPath));        
     }
     
     @Override
@@ -34,7 +28,7 @@ public class DamageOverTimeEffect implements SkillEffect, ActionListener {
     }
     
     @Override
-    public BufferedImage getEffectGraphic() {
+    public ImageIcon getEffectGraphic() {
         return this.effectGraphic;
     }
 

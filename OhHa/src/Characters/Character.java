@@ -4,9 +4,9 @@ import Characters.skills.Skill;
 import Characters.skills.SkillEffect;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 /**
  * Represents a character and handles character's attributes, effects and hit cooldowns.
@@ -20,24 +20,30 @@ public abstract class Character implements ActionListener {
      * health is the current health of the character.
      */
     protected int maxHealth, attackSpeed, strength, defence, health;
-    private ArrayList<BufferedImage> charImages; //kuvat animaatioihin
+    private ArrayList<ImageIcon> charImages; //kuvat animaatioihin
     private boolean isDead;
     private Character target;
     private boolean isStunned;
     private Timer cooldownTimer; //lyöntinopeuden ajastin
+    /**
+     * True if hit is not on cooldown.
+     */
     private boolean hitAvailable;
-    private BufferedImage image; //hahmosta näytettävä kuva
+    private ImageIcon image; //hahmosta näytettävä kuva
+    /**
+     * True if character is blocking.
+     */
     private boolean blocking;
     /**
-    * A list of currently active buffs on the character
+    * A list of currently active buffs on the character.
     */
     private ArrayList<SkillEffect> buffs;
     /**
-    * A list of currently active debuffs on the character
+    * A list of currently active debuffs on the character.
     */
     private ArrayList<SkillEffect> debuffs;
     
-    public Character(int maxHealth, int attackSpeed, int strength, int defence, ArrayList<BufferedImage> hahmoKuvat) {
+    public Character(int maxHealth, int attackSpeed, int strength, int defence, ArrayList<ImageIcon> hahmoKuvat) {
         this.attackSpeed = attackSpeed;
         this.maxHealth = maxHealth;
         this.strength = strength;
@@ -48,6 +54,27 @@ public abstract class Character implements ActionListener {
         isStunned = false;
         hitAvailable = true;
         this.image = hahmoKuvat.get(0);
+        cooldownTimer = new Timer(700-(22*this.attackSpeed), this);
+        blocking = false;
+        buffs = new ArrayList<SkillEffect>();        
+        debuffs = new ArrayList<SkillEffect>();
+    }    
+    /**
+     * A Constructor for testing
+     * @param maxHealth
+     * @param attackSpeed
+     * @param strength
+     * @param defence 
+     */    
+    public Character(int maxHealth, int attackSpeed, int strength, int defence) {
+        this.attackSpeed = attackSpeed;
+        this.maxHealth = maxHealth;
+        this.strength = strength;
+        this.defence = defence;        
+        this.isDead = false;
+        this.health = maxHealth;
+        isStunned = false;
+        hitAvailable = true;        
         cooldownTimer = new Timer(700-(22*this.attackSpeed), this);
         blocking = false;
         buffs = new ArrayList<SkillEffect>();        
@@ -175,6 +202,12 @@ public abstract class Character implements ActionListener {
             blocking = true;
         }
     }
+    public void setBlockStateTest() {        
+        if (!blocking && !isStunned) {   
+            setDefence(defence*2);            
+            blocking = true;
+        }
+    }
     
     /**
      * Set's character's defence back to normal after blocking
@@ -183,6 +216,15 @@ public abstract class Character implements ActionListener {
         if (blocking) {
             setDefence(defence/2);
             setImage(0);
+            blocking = false;
+        }
+    }
+    /**
+     * Block state without image for testing
+     */
+    public void endBlockStateTest() {
+        if (blocking) {
+            setDefence(defence/2);            
             blocking = false;
         }
     }
@@ -208,7 +250,7 @@ public abstract class Character implements ActionListener {
         return this.hitAvailable;
     }
     
-    public BufferedImage getImage() {
+    public ImageIcon getImage() {
         return this.image;
     }
     

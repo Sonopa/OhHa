@@ -38,17 +38,8 @@ public class SkillTest {
     
     @Before
     public void setUp() {
-        ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-        try {
-            BufferedImage normalState = ImageIO.read(new File("src/images/orcn.png"));
-            BufferedImage attackState = ImageIO.read(new File("src/images/orca.png"));
-            BufferedImage blockState = ImageIO.read(new File("src/images/orcd.png"));
-            images.add(normalState);
-            images.add(attackState);
-            images.add(blockState);
-        }catch (Exception e){}        
-        player = new Player(500,5,5,5,images);
-        monster = new Monster(500, 5, 5, 5, images, new ArrayList<Skill>());
+        player = new Player(500,5,5,5);
+        monster = new Monster(500, 5, 5, 5, new ArrayList<Skill>());
         SkillEffect effect = new StunEffect("");
         skill = new Skill("Skill", 100, 150, effect, 10000, "", "", "");
         player.addSkill(skill);

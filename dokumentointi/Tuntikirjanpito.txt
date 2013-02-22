@@ -63,3 +63,20 @@ Ti 12.2
 JavaDoc ja testit: 50min
 Sekvenssi ja luokkakaavio: 30min
 
+
+To 14.2 
+
+Grafiikan piirtämistä: 2h
+Ohjelmontia: 30min
+
+
+Ma 18.2
+
+Ohjelmointia: 1h
+
+
+Pe 22.2
+
+Ohjelmointia: 1h
+Rakennekuvaus ja käyttöohjeet: 30min
+Kaikenlaista viimeistelyä: 1h

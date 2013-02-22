@@ -2,10 +2,6 @@ package CharacterTests;
 
 
 import Characters.Player;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -28,18 +24,8 @@ public class CharacterTest {
     }
     
     @Before
-    public void setUp() {
-        ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-        try {
-            BufferedImage normalState = ImageIO.read(new File("src/images/orcn.png"));
-            BufferedImage attackState = ImageIO.read(new File("src/images/orca.png"));
-            BufferedImage blockState = ImageIO.read(new File("src/images/orcd.png"));
-            images.add(normalState);
-            images.add(attackState);
-            images.add(blockState);
-        }catch (Exception e){}
-        player = new Player(500,5,5,5,images);
-        
+    public void setUp() {        
+        player = new Player(500,5,5,5);        
     }
     
     @Test
@@ -132,14 +118,14 @@ public class CharacterTest {
     
     @Test
     public void settingBlockState() {
-        player.setBlockState();
+        player.setBlockStateTest();
         assertEquals(10, player.getDefence());
     }
     
     @Test
     public void endingBlockState() {
-        player.setBlockState();
-        player.endBlockState();
+        player.setBlockStateTest();
+        player.endBlockStateTest();
         assertEquals(5, player.getDefence());
     }
     

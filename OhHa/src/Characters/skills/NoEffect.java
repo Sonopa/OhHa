@@ -1,7 +1,7 @@
 package Characters.skills;
 
 import Characters.Character;
-import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
 
 /**
  * A skilleffect for skills that have no effect. Does nothing 
@@ -13,7 +13,7 @@ public class NoEffect implements SkillEffect {
     }
     
     @Override
-    public BufferedImage getEffectGraphic() {
+    public ImageIcon getEffectGraphic() {
         return null;
     }
 

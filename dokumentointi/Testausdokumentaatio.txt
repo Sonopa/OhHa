@@ -1,0 +1,12 @@
+Jätin automaattisen testauksen suht. vähäiseksi (esim. erilaisilla arvoilla testaamisen), koska pelissä 
+vääränlaisten syötteiden antaminen mahdotonta, enkä keksinyt mitä muita asioita testata. En myöskään tiennyt 
+kuinka testata luokkia, joissa tapahtumat riippuvat ajastimesta. Kaikkea on kuitenkin testattu pelaamalla, ja 
+katsomalla itse, että kaikki toimii oikein. Esim. samaan atribuuttiin vaikuttavia efektejä testattu yhtäaikaa
+ja kaikkien nappien oikea toiminta aina tarkistettu.
+
+
+Bugit, joita en ehtinyt korjaamaan: 
+- Jos puolustaa ja Lower Defence/Ultimate Defence on samaan aikaan aktiivinen, saattaa aiheutua pysyviä muutoksia
+defenceen. 
+- Tallentaminen ei toimi jar -tiedostossa
+- Tallennetussa pelissä SkillUI:ssa mahdollista valita jo aikaisemmin valittuja skillejä.

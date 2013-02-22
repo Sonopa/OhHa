@@ -5,11 +5,10 @@ import Characters.Character;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.Timer;
 import UI.SkillButton;
+import javax.swing.ImageIcon;
 
 /**
  * Represents a character's skill. When skill is used, a cooldowntimer is started and the skill's
@@ -31,8 +30,8 @@ public class Skill implements ActionListener {
      * Amount that the user is healed when the skill is used
      */
     private int healing;
-    private BufferedImage skillIconUsed;  //taitojen ikonit UI:ta varten
-    private BufferedImage skillIconUsable;
+    private ImageIcon skillIconUsed;  //taitojen ikonit UI:ta varten
+    private ImageIcon skillIconUsable;
     /**
      * A description of the skill for the SkillUI
      */
@@ -49,30 +48,22 @@ public class Skill implements ActionListener {
         this.cooldowntimer = new Timer(cooldown, this);  
         this.used = false;
         this.effect = effect;
-        this.healing = healing;
-        try {
-            skillIconUsed = ImageIO.read(new File(skillIconPathUsed));
-        }catch (Exception e) {
-            System.out.println("skillIconUsed ei löytynyt");
-        }
-        try {
-            skillIconUsable = ImageIO.read(new File(skillIconPathUsable));
-        }catch (Exception e) {
-            System.out.println("skillIconUsable ei löytynyt");
-        }
+        this.healing = healing;        
+        skillIconUsed = new ImageIcon(this.getClass().getClassLoader().getResource(skillIconPathUsed));        
+        skillIconUsable = new ImageIcon(this.getClass().getClassLoader().getResource(skillIconPathUsable));        
         this.tooltip = tooltip;
         this.button = new SkillButton(skillIconPathUsable);
         button.setToolTipText(tooltip);
     }   
     
-    public BufferedImage getGraphic() {
+    public ImageIcon getGraphic() {
         return this.effect.getEffectGraphic();
     }
     
-    public BufferedImage getSkillIconUsed() {
+    public ImageIcon getSkillIconUsed() {
         return skillIconUsed;
     }
-    public BufferedImage getSkillIconUsable() {
+    public ImageIcon getSkillIconUsable() {
         return skillIconUsable;
     }
     

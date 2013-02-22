@@ -9,8 +9,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 /**
- * Canvas for displaying graphics
- * @author 
+ * Canvas for displaying graphics.
  */
 public class Canvas extends JPanel {
     private Map map;
@@ -25,9 +24,9 @@ public class Canvas extends JPanel {
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
         super.paintComponent(g2d);
-        g2d.drawImage(map.getMapImage(), 0, 0, null);
-        g2d.drawImage(map.getMonster().getImage(), 310, 300, null);
-        g2d.drawImage(player.getImage(), 310, 300, null);
+        g2d.drawImage(map.getMapImage().getImage(), 0, 0, null);
+        g2d.drawImage(map.getMonster().getImage().getImage(), 310, 300, null);
+        g2d.drawImage(player.getImage().getImage(), 310, 300, null);
         g2d.drawString("" + player.getHealth(), 145, 50);
         g2d.drawString("" + map.getMonster().getHealth(), 600, 50);
         g2d.drawString("" + map.getMonster().getDefence(), 600, 70);
@@ -69,9 +68,9 @@ public class Canvas extends JPanel {
         if (!character.getSkills().isEmpty()) {
             for (int i=0; i<character.getSkills().size(); i++) {
                 if (character.getSkills().get(i).isUsed()) {
-                    g2d.drawImage(character.getSkills().get(i).getSkillIconUsed(), x, y+40*i, null);
+                    g2d.drawImage(character.getSkills().get(i).getSkillIconUsed().getImage(), x, y+40*i, null);
                 }else {
-                    g2d.drawImage(character.getSkills().get(i).getSkillIconUsable(), x, y+40*i, null);
+                    g2d.drawImage(character.getSkills().get(i).getSkillIconUsable().getImage(), x, y+40*i, null);
                 }
             }
         }
@@ -82,9 +81,9 @@ public class Canvas extends JPanel {
         if (buffAmount > 0) {
             for (int i=0; i<character.getBuffs().size(); i++) {
                 if (!isMonster) {
-                    g2d.drawImage(character.getBuffs().get(i).getEffectGraphic(), 100+40*i, 480, null);
+                    g2d.drawImage(character.getBuffs().get(i).getEffectGraphic().getImage(), 100+40*i, 480, null);
                 }else {
-                    g2d.drawImage(character.getBuffs().get(i).getEffectGraphic(), 660-40*i, 480, null);
+                    g2d.drawImage(character.getBuffs().get(i).getEffectGraphic().getImage(), 660-40*i, 480, null);
                 }
             }
         }
@@ -92,9 +91,9 @@ public class Canvas extends JPanel {
         if (debuffAmount > 0) {
             for (int i=0; i<character.getDebuffs().size(); i++) {
                 if (!isMonster) {
-                    g2d.drawImage(character.getDebuffs().get(i).getEffectGraphic(), 100+40*i, 520, null);
+                    g2d.drawImage(character.getDebuffs().get(i).getEffectGraphic().getImage(), 100+40*i, 520, null);
                 }else {
-                    g2d.drawImage(character.getDebuffs().get(i).getEffectGraphic(), 660-40*i, 520, null);
+                    g2d.drawImage(character.getDebuffs().get(i).getEffectGraphic().getImage(), 660-40*i, 520, null);
                 }
             }
         }               

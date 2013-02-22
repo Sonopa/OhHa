@@ -17,16 +17,14 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.WindowConstants;
 import UI.SkillUI;
+import javax.swing.ImageIcon;
 import maps.LevelContainer;
 
 /**
@@ -54,8 +52,7 @@ public class Game extends JFrame implements Runnable, ActionListener {
         skills.createSkills();
         skills.createMonsterSkills();
         levels = new LevelContainer(skills.getMonsterSkills(), difficulty);
-        timer = new Timer(20, this);
-        
+        timer = new Timer(20, this);        
     }
 
     @Override
@@ -140,18 +137,18 @@ public class Game extends JFrame implements Runnable, ActionListener {
     }
     
     public Player createPlayer() {        
-        ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
+        ArrayList<ImageIcon> images = new ArrayList<ImageIcon>();
         try {
-            BufferedImage normalState = ImageIO.read(new File("src/images/stickman0.png"));            
-            BufferedImage attackState = ImageIO.read(new File("src/images/stickman1.png"));
-            BufferedImage attackState2 = ImageIO.read(new File("src/images/stickman2.png"));
-            BufferedImage blockState = ImageIO.read(new File("src/images/stickman3.png"));
+            ImageIcon normalState = new ImageIcon(this.getClass().getClassLoader().getResource("images/stickman0.png"));            
+            ImageIcon attackState = new ImageIcon(this.getClass().getClassLoader().getResource("images/stickman1.png"));
+            ImageIcon attackState2 = new ImageIcon(this.getClass().getClassLoader().getResource("images/stickman2.png"));
+            ImageIcon blockState = new ImageIcon(this.getClass().getClassLoader().getResource("images/stickman3.png"));
             images.add(normalState);
             images.add(attackState);
             images.add(attackState2);
             images.add(blockState);
         }catch (Exception e){}
-        player = new Player(500,2,2,2,images);
+        player = new Player(600,2,2,2,images);
         return player;
     }
     
@@ -243,7 +240,7 @@ public class Game extends JFrame implements Runnable, ActionListener {
     
     public void saveGame() {
         try {
-            FileWriter writer = new FileWriter("src/ohha/save.txt");
+            FileWriter writer = new FileWriter(this.getClass().getClassLoader().getResource("ohha/save.txt").getPath());
             writer.write(difficulty + "\n");
             writer.write(level + "\n");
             writer.write(player.getStrength() + "\n");

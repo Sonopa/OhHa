@@ -3,7 +3,7 @@ package CharacterTests.SkillTests;
 
 import Characters.Monster;
 import Characters.Player;
-import Characters.skills.IncreaseDefence;
+import Characters.skills.IncreaseDefenceEffect;
 import Characters.skills.Skill;
 import Characters.skills.SkillEffect;
 import java.awt.image.BufferedImage;
@@ -34,19 +34,10 @@ public class IncreadeDefenceTest {
     }
     
     @Before
-    public void setUp() {
-        ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-        try {
-            BufferedImage normalState = ImageIO.read(new File("src/images/orcn.png"));
-            BufferedImage attackState = ImageIO.read(new File("src/images/orca.png"));
-            BufferedImage blockState = ImageIO.read(new File("src/images/orcd.png"));
-            images.add(normalState);
-            images.add(attackState);
-            images.add(blockState);
-        }catch (Exception e){}        
-        player = new Player(500,5,5,5,images);
-        monster = new Monster(500, 5, 5, 5, images, new ArrayList<Skill>());
-        incdef = new IncreaseDefence("");
+    public void setUp() {                   
+        player = new Player(500,5,5,5);
+        monster = new Monster(500, 5, 5, 5, new ArrayList<Skill>());
+        incdef = new IncreaseDefenceEffect("");
         player.setTarget(monster);
         monster.setTarget(player);
     }  
@@ -56,7 +47,7 @@ public class IncreadeDefenceTest {
     }
     
     @Test
-    public void isDefenceIncreased() {
+    public void defenceIncreased() {
         incdef.triggerEffect(player.getTarget());
         assertEquals(10, player.getDefence());
     }
@@ -64,5 +55,12 @@ public class IncreadeDefenceTest {
     public void addedToBuffList() {
         incdef.triggerEffect(player.getTarget());
         assertEquals(1, player.getBuffs().size());
-    }    
+    }
+    @Test
+    public void noIncreaseIfBlocking() {
+        player.setBlockStateTest();
+        incdef.triggerEffect(player);
+        player.endBlockStateTest();
+        assertEquals(player.getDefence(), 5);
+    }
 }

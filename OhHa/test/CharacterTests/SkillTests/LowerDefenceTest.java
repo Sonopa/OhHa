@@ -6,7 +6,7 @@ package CharacterTests.SkillTests;
 
 import Characters.Monster;
 import Characters.Player;
-import Characters.skills.IncreaseDefence;
+import Characters.skills.IncreaseDefenceEffect;
 import Characters.skills.LowerDefenceEffect;
 import Characters.skills.Skill;
 import Characters.skills.SkillEffect;
@@ -38,17 +38,8 @@ public class LowerDefenceTest {
     
     @Before
     public void setUp() {
-        ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-        try {
-            BufferedImage normalState = ImageIO.read(new File("src/images/orcn.png"));
-            BufferedImage attackState = ImageIO.read(new File("src/images/orca.png"));
-            BufferedImage blockState = ImageIO.read(new File("src/images/orcd.png"));
-            images.add(normalState);
-            images.add(attackState);
-            images.add(blockState);
-        }catch (Exception e){}        
-        player = new Player(500,5,5,5,images);
-        monster = new Monster(500, 5, 5, 5, images, new ArrayList<Skill>());
+        player = new Player(500,5,5,5);
+        monster = new Monster(500, 5, 5, 5, new ArrayList<Skill>());
         lowerDef = new LowerDefenceEffect("");
         player.setTarget(monster);
         monster.setTarget(player);
@@ -68,9 +59,10 @@ public class LowerDefenceTest {
         lowerDef.triggerEffect(player.getTarget());
         assertEquals(1, monster.getDebuffs().size());
     } 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void noDecreaseIfBlocking() {
+        player.setBlockStateTest();
+        lowerDef.triggerEffect(player);        
+        assertEquals(player.getDefence(), 10);
+    }
 }

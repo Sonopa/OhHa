@@ -1,0 +1,24 @@
+Menu
+New Game: Aloittaa uuden pelin
+Continue: Jatkaa tallennettua peliä
+Difficulty: Vaikeustason valisteminen
+Quit: Lopettaa pelin
+
+Pelaaminen
+Lyönti: Oikea nuolinäppäin
+Puolustus: Paina vasenta nuolinäppäintä pohjassa (tuplaa defencen)
+Taidot: Näppäimet 1-5
+Pause: Esc
+
+Attribuutit
+Strength: Lisää lyönnin voimaa
+Attack Speed: Lisää lyöntien nopeutta
+Defence: Vähentää lyönneistä otettavaa vahinkoa
+Max Health: Korottaa maksimielämää
+
+Muiden kuin max health atribuuttien maksimi on 30.
+
+Jokaisen kentän läpipääsyn jälkeen saa 6 kokemuspistettä ja jokatoisen kentän jälkeen yhden taitopisteen.
+Pelissä on 10 kenttää. Viholliset voimistuvat jokaisessa kentässä. Jos kuolet, kenttä aloitetaan alusta.
+Tallentaa voi pausettaessa (ei toimi vielä jar -tiedostossa). Aktiiviset taitojen efektit näkyvät alaosassa.
+

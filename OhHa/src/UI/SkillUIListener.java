@@ -24,46 +24,16 @@ public class SkillUIListener implements ActionListener {
     
     public SkillUIListener(Game game, JButton skill1, JButton skill2, JButton skill3, JButton skill4, JButton skill5,
             JButton skill6, JButton skill7, JButton skill8, JButton skill9, JButton skill10, JButton contin, JLabel points) {
-        this.skill1 = skill1;
-        if (game.getPlayer().hasSkill(skill1.getName())) {
-            this.skill1.setEnabled(false);
-        }
-        this.skill2 = skill2;
-        if (game.getPlayer().hasSkill(skill2.getName())) {
-            this.skill2.setEnabled(false);
-        }
-        this.skill3 = skill3;
-        if (game.getPlayer().hasSkill(skill3.getName())) {
-            this.skill3.setEnabled(false);
-        }
-        this.skill4 = skill4;
-        if (game.getPlayer().hasSkill(skill4.getName())) {
-            skill4.setEnabled(false);
-        }
-        this.skill5 = skill5;
-        if (game.getPlayer().hasSkill(skill5.getName())) {
-            skill5.setEnabled(false);
-        }
-        this.skill6 = skill6;
-        if (game.getPlayer().hasSkill(skill6.getName())) {
-            skill6.setEnabled(false);
-        }
-        this.skill7 = skill7;
-        if (game.getPlayer().hasSkill(skill7.getName())) {
-            skill7.setEnabled(false);
-        }
-        this.skill8 = skill8;
-        if (game.getPlayer().hasSkill(skill8.getName())) {
-            skill1.setEnabled(false);
-        }
-        this.skill9 = skill9;
-        if (game.getPlayer().hasSkill(skill9.getName())) {
-            skill1.setEnabled(false);
-        }
-        this.skill10 = skill10;
-        if (game.getPlayer().hasSkill(skill10.getName())) {
-            skill1.setEnabled(false);
-        }
+        this.skill1 = skill1;        
+        this.skill2 = skill2;        
+        this.skill3 = skill3;       
+        this.skill4 = skill4;        
+        this.skill5 = skill5;        
+        this.skill6 = skill6;        
+        this.skill7 = skill7;        
+        this.skill8 = skill8;        
+        this.skill9 = skill9;        
+        this.skill10 = skill10;        
         this.contin = contin;
         this.game = game;
         this.points = points;

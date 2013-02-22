@@ -1,0 +1,6 @@
+Luokka Game on luokka, jossa peli pyörii ja jossa kaikki pelin osat luodaan. Luokassa Game on LevelContainer, johon 
+luodaan ja säilötään pelin kentät ja viholliset. Game sisältää myös SkillContainerin, johon luodaan ja säilötään
+pelaajan ja vihollisten skillit. Skillit sisältävät yhden SkillEffectin. Canvakseen piirretään pelin grafiikka.
+Gamessa oleva MonsterAI ohjaa vihollisen toimintoja. Kenttä eli Map sisältää yhden vihollisen(Monster). Luokat
+Player ja Monster perivät luokan Character. Player ja Monster käyttävät skillcontainerissa olevia skillejä. 
+Skillien efektit toteuttavat rajapinnan SkillEffect.

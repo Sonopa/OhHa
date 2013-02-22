@@ -4,9 +4,7 @@ package Characters.skills;
 import Characters.Character;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 /**
@@ -15,7 +13,7 @@ import javax.swing.Timer;
  * 
  */
 public class DecreaseStrengthAndHealth implements ActionListener, SkillEffect {
-    private BufferedImage effectGraphic;
+    private ImageIcon effectGraphic;
     private Timer timer;
     private boolean effectActive;
     private int effectNumber;
@@ -23,11 +21,7 @@ public class DecreaseStrengthAndHealth implements ActionListener, SkillEffect {
     
     public DecreaseStrengthAndHealth(String effectGraphicPath) {
         effectActive = false;
-        try {
-            effectGraphic = ImageIO.read(new File(effectGraphicPath));
-        }catch (Exception e) {
-            System.out.println("efektiä ei löytynyt");
-        }
+        effectGraphic = new ImageIcon(this.getClass().getClassLoader().getResource(effectGraphicPath));  
         this.timer = new Timer(1000, this);
     }    
 
@@ -53,7 +47,7 @@ public class DecreaseStrengthAndHealth implements ActionListener, SkillEffect {
     }
 
     @Override
-    public BufferedImage getEffectGraphic() {
+    public ImageIcon getEffectGraphic() {
         return effectGraphic;
     }
 

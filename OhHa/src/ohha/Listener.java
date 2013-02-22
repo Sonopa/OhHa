@@ -18,8 +18,7 @@ public class Listener implements KeyListener {
     }    
 
     @Override
-    public void keyTyped(KeyEvent ke) {
-        
+    public void keyTyped(KeyEvent ke) {        
     }
 
     @Override

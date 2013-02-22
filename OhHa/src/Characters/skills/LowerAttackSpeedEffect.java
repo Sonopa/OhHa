@@ -3,9 +3,7 @@ package Characters.skills;
 import Characters.Character;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 /**
@@ -15,18 +13,14 @@ public class LowerAttackSpeedEffect implements SkillEffect, ActionListener {
     private Timer timer;
     private int attackSpeed;
     private Character target;
-    private BufferedImage effectGraphic;
+    private ImageIcon effectGraphic;
     private boolean effectActive;
     private int effectNumber;
     
     public LowerAttackSpeedEffect(String effectGraphicPath) {
         timer = new Timer(6000, this);
         effectActive = false;
-        try {
-            effectGraphic = ImageIO.read(new File(effectGraphicPath));
-        }catch (Exception e) {
-            System.out.println("efektiä ei löytynyt");
-        }        
+        effectGraphic = new ImageIcon(this.getClass().getClassLoader().getResource(effectGraphicPath));         
     }
     
     @Override
@@ -35,7 +29,7 @@ public class LowerAttackSpeedEffect implements SkillEffect, ActionListener {
     }
     
     @Override
-    public BufferedImage getEffectGraphic() {
+    public ImageIcon getEffectGraphic() {
         return this.effectGraphic;
     }
 

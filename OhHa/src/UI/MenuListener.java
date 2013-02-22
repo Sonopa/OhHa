@@ -2,7 +2,10 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 import javax.swing.JButton;
 import ohha.Game;
@@ -40,9 +43,9 @@ public class MenuListener implements ActionListener {
             peli.gameStart();            
         }else if (ae.getSource() == contin) {
             Game peli = new Game(setting.getDifficulty());            
-            File save = new File("src/ohha/save.txt");
             try {
-                Scanner lukija = new Scanner(save);
+                InputStream stream = this.getClass().getClassLoader().getResourceAsStream("ohha/save.txt");                                
+                Scanner lukija = new Scanner(stream);
                 peli.setDifficulty(Integer.parseInt(lukija.nextLine()));
                 peli.setLevel(Integer.parseInt(lukija.nextLine()));
                 peli.run();

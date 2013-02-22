@@ -3,31 +3,24 @@ package Characters.skills;
 import Characters.Character;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 /**
- * A skilleffect that doubles the users defence for 5 seconds
- * @author 
+ * A skilleffect that doubles the users defence for 5 seconds. 
  */
-public class IncreaseDefence implements SkillEffect, ActionListener {
+public class IncreaseDefenceEffect implements SkillEffect, ActionListener {
     private Timer timer;    
     private Character target;
     private int defence;
-    private BufferedImage effectGraphic;
+    private ImageIcon effectGraphic;
     private boolean effectActive;
     private int effectNumber;
     
-    public IncreaseDefence(String effectGraphicPath) {
+    public IncreaseDefenceEffect(String effectGraphicPath) {
         timer = new Timer(6000, this);
         effectActive = false;
-        try {
-            effectGraphic = ImageIO.read(new File(effectGraphicPath));
-        }catch (Exception e) {
-            System.out.println("efektiä ei löytynyt");
-        }
+        effectGraphic = new ImageIcon(this.getClass().getClassLoader().getResource(effectGraphicPath));  
     }
     
     @Override
@@ -36,7 +29,7 @@ public class IncreaseDefence implements SkillEffect, ActionListener {
     }
     
     @Override
-    public BufferedImage getEffectGraphic() {
+    public ImageIcon getEffectGraphic() {
         return this.effectGraphic;
     }
 

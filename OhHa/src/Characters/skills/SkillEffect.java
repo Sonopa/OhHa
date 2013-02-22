@@ -2,7 +2,7 @@
 package Characters.skills;
 
 import Characters.Character;
-import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
 
 /**
  * An effect for a skill 
@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 public interface SkillEffect {
     
     public void triggerEffect(Character target);   
-    public BufferedImage getEffectGraphic();
+    public ImageIcon getEffectGraphic();
     /**
      * Return true if the effect is active on the target
      * @return 

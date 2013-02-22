@@ -3,7 +3,7 @@ package CharacterTests.SkillTests;
 
 import Characters.Monster;
 import Characters.Player;
-import Characters.skills.IncreaseDefence;
+import Characters.skills.IncreaseDefenceEffect;
 import Characters.skills.LowerDefenceEffect;
 import Characters.skills.RemoveDebuffsEffect;
 import Characters.skills.Skill;
@@ -40,17 +40,8 @@ public class RemoveDebuffsTest {
     
     @Before
     public void setUp() {
-        ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-        try {
-            BufferedImage normalState = ImageIO.read(new File("src/images/orcn.png"));
-            BufferedImage attackState = ImageIO.read(new File("src/images/orca.png"));
-            BufferedImage blockState = ImageIO.read(new File("src/images/orcd.png"));
-            images.add(normalState);
-            images.add(attackState);
-            images.add(blockState);
-        }catch (Exception e){}        
-        player = new Player(500,5,5,5,images);      
-        monster = new Monster(500,5,5,5,images, new ArrayList<Skill>());
+        player = new Player(500,5,5,5);
+        monster = new Monster(500, 5, 5, 5, new ArrayList<Skill>());
         remDB = new RemoveDebuffsEffect();
         player.setTarget(monster);
         monster.setTarget(player);
@@ -71,8 +62,7 @@ public class RemoveDebuffsTest {
     
     @Test
     public void DebuffsRemoved() {
-        lowerDef.triggerEffect(player);
-        stun.triggerEffect(player);
+        lowerDef.triggerEffect(player);        
         remDB.triggerEffect(monster);
         assertEquals(0, player.getDebuffs().size());
     }
